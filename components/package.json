@@ -1,0 +1,25 @@
+{
+  "name": "@adiago/components",
+  "version": "0.0.1",
+  "description": "Styled React Component Library based on Radix and Tailwind",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tscritch/adiago.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "radixui",
+    "tailwindcss"
+  ],
+  "author": "Tad Scritchfield",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/tscritch/adiago/issues"
+  },
+  "homepage": "https://github.com/tscritch/adiago#readme"
+}
