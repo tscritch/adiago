@@ -5,12 +5,12 @@
 @layer base {
   :root {
     font-family: Epilogue, Inter, Avenir, Helvetica, Arial, sans-serif;
-    color-scheme: light dark;
+    color-scheme: light;
     @apply bg-white;
   }
   :root.dark {
     font-family: Epilogue, Inter, Avenir, Helvetica, Arial, sans-serif;
-    color-scheme: light dark;
+    color-scheme: dark;
     @apply bg-neutral-900;
   }
 
