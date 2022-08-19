@@ -1,5 +1,4 @@
 import { Button } from '@adiago/components';
-import '@adiago/components/dist/index.css';
 import './App.css';
 
 function App() {

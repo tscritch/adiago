@@ -1,7 +1,6 @@
 import postcss from 'rollup-plugin-postcss';
 import pluginTypescript from '@rollup/plugin-typescript';
 import pluginCommonjs from '@rollup/plugin-commonjs';
-import pluginNodeResolve from '@rollup/plugin-node-resolve';
 import { babel } from '@rollup/plugin-babel';
 import * as path from 'path';
 import pkg from './package.json';
@@ -16,7 +15,11 @@ const banner = `
    * Released under the ${pkg.license} license.
    */
 `;
-const excludedDepedencies = [...Object.keys(pkg.devDependencies || {}), ...Object.keys(pkg.peerDependencies || {})];
+const excludedDepedencies = [
+  'react/jsx-runtime',
+  ...Object.keys(pkg.devDependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {})
+];
 
 export default [
   {

@@ -39,7 +39,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // });
 
     return (
-      <button className="bg-black text-adiago-100" ref={ref} {...props}>
+      <button className="bg-black text-adiago-100 dark:bg-white" ref={ref} {...props}>
         {children}
       </button>
     );
