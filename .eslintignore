@@ -1,0 +1,7 @@
+build.js
+build
+dist
+
+*.config.js
+*.config.cjs
+*.config.ts

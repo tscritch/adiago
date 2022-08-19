@@ -2,7 +2,7 @@
   "private": "true",
   "workspaces": [
     "docs",
-    "components/*"
+    "components"
   ],
   "scripts": {
     "lint": "eslint .",
