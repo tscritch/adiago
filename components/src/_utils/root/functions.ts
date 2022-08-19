@@ -1,6 +1,6 @@
 export type ThemeType = 'os' | 'light' | 'dark';
 
-export const getTheme = () => {
+export const getTheme = (): ThemeType => {
   return 'theme' in localStorage ? localStorage.theme : 'os';
 };
 

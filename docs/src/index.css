@@ -4,8 +4,14 @@
 
 @layer base {
   :root {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Epilogue, Inter, Avenir, Helvetica, Arial, sans-serif;
     color-scheme: light dark;
+    @apply bg-white;
+  }
+  :root.dark {
+    font-family: Epilogue, Inter, Avenir, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
+    @apply bg-neutral-900;
   }
 
   body {

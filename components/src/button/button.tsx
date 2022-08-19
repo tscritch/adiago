@@ -1,48 +1,72 @@
 import React from 'react';
-// import classnames from "classnames";
+import classnames from 'classnames';
 
 type ReducedHTMLButtonElement = Omit<React.HTMLProps<HTMLButtonElement>, 'size'>;
+
+type TButtonColors = 'primary' | 'secondary' | 'strong' | 'error' | 'opaque';
+type TButtonShapes = 'rect' | 'circle';
+type TButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type TButtonVariants = 'standard' | 'outline' | 'flat' | 'transparent';
 
 export interface ButtonProps extends ReducedHTMLButtonElement {
   children: React.ReactNode;
   /**
    * Color: primary, secondary, error, white
    */
-  color?: 'primary' | 'secondary' | 'error' | 'white';
+  color?: TButtonColors;
   /**
    * Shape: rect, circle
    */
-  shape?: 'rect' | 'circle';
+  shape?: TButtonShapes;
   /**
-   * Size: xs, sm, md, lg
+   * Size: xs, sm, md, lg, xl
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: TButtonSizes;
   type?: 'button' | 'submit' | 'reset';
   /**
    * Variant: standard, outline, flat, transparent
    */
-  variant?: 'standard' | 'outline' | 'flat' | 'transparent';
+  variant?: TButtonVariants;
 }
+
+const baseClasses = 'adiago-button';
+const colorClasses: Record<TButtonColors, string> = {
+  primary: 'bg-leaf-500',
+  secondary: 'bg-blue-500',
+  strong: 'bg-djent-500',
+  error: 'bg-red-500',
+  opaque: 'bg-white text-neutral-800 dark:bg-neutral-800 dark:text-white'
+};
+const variantClasses: Record<TButtonVariants, string> = {
+  standard: 'drop-shadow',
+  outline: '',
+  flat: '',
+  transparent: ''
+};
+const shapeClasses: Record<TButtonShapes, string> = {
+  rect: 'rounded',
+  circle: 'rounded-full'
+};
+const sizeClasses: Record<TButtonSizes, string> = {
+  xs: 'px-1 py-0.5 text-sm',
+  sm: 'px-2 py-1 text-base',
+  md: 'px-3 py-1 text-base',
+  lg: 'px-6 py-3 text-md',
+  xl: 'px-8 py-4 text-lg'
+};
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'standard', color = 'primary', size = 'md', shape = 'rect', children, ...props }, ref) => {
-    // const classNames = classnames('button', {
-    //   'button-flat': v === 'flat',
-    //   'button-outline': v === 'outline',
-    //   'button-transparent': v === 'transparent',
-    //   'button-primary': c === 'primary',
-    //   'button-secondary': c === 'secondary',
-    //   'button-error': c === 'error',
-    //   'button-white': c === 'white',
-    //   'button-small': s === 'small',
-    //   'button-large': s === 'large'
-    // });
+    const classNames = classnames(
+      baseClasses,
+      colorClasses[color],
+      variantClasses[variant],
+      shapeClasses[shape],
+      sizeClasses[size]
+    );
 
     return (
-      <button
-        className="adiago-plastic px-4 py-1 rounded uppercase dark:text-white dark:bg-neutral-700 dark:hover:bg-neutral-600"
-        ref={ref}
-        {...props}>
+      <button className={classNames} ref={ref} {...props}>
         {children}
       </button>
     );

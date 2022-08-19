@@ -9,9 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@adiago/components": "*",
+    "classnames": "^2.3.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@adiago/components": "*"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
