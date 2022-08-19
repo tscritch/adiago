@@ -2,6 +2,8 @@ build.js
 build
 dist
 
+scripts
+
 *.config.js
 *.config.cjs
 *.config.ts
