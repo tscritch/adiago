@@ -1,1 +1,3 @@
-export * as Button from './button';
+import './index.css';
+
+export { Button } from './button';

@@ -1,7 +1,9 @@
 import React from 'react';
 // import classnames from "classnames";
 
-export interface ButtonProps extends Omit<React.HTMLProps<HTMLButtonElement>, 'size'> {
+type ReducedHTMLButtonElement = Omit<React.HTMLProps<HTMLButtonElement>, 'size'>;
+
+export interface ButtonProps extends ReducedHTMLButtonElement {
   children: React.ReactNode;
   /**
    * Color: primary, secondary, error, white
@@ -37,7 +39,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // });
 
     return (
-      <button ref={ref} {...props}>
+      <button className="bg-black text-adiago-100" ref={ref} {...props}>
         {children}
       </button>
     );
