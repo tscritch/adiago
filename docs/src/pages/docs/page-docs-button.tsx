@@ -3,38 +3,112 @@ import { Button } from '@adiago/components';
 export const PageDocsButton = () => {
   return (
     <div>
-      <Button>Default</Button>
-      {/* <Button c="secondary">Secondary</Button>
-      <Button c="white">White</Button>
-      <Button c="error">Error</Button>
-      <br />
-      <br />
-      <Button v="flat">Flat</Button>
-      <Button v="flat" c="secondary">
-        Flat Secondary
-      </Button>
-      <Button v="flat" c="error">
-        Flat Error
-      </Button>
-      <Button v="flat" c="white">
-        Flat White
-      </Button>
-      <br />
-      <br />
-      <Button v="transparent">Transparent</Button>
-      <Button v="transparent" c="secondary">
-        Transparent Secondary
-      </Button>
-      <Button v="transparent" c="error">
-        Transparent Error
-      </Button>
-      <Button v="transparent" c="white">
-        Transparent White
-      </Button>
-      <br />
-      <br />
-      <Button s="large">Large</Button>
-      <Button s="small">Small</Button> */}
+      <div className="p-4">
+        <Button>Default</Button>
+      </div>
+      <div className="p-2">
+        <div className="p-2 flex space-x-4">
+          <Button color="primary">Primary</Button>
+          <Button color="secondary">Secondary</Button>
+          <Button color="strong">Strong</Button>
+          <Button color="error">Error</Button>
+          <Button color="opaque">Opaque</Button>
+        </div>
+        <div className="p-2 flex space-x-4">
+          <Button variant="outline" color="primary">
+            Primary
+          </Button>
+          <Button variant="outline" color="secondary">
+            Secondary
+          </Button>
+          <Button variant="outline" color="strong">
+            Strong
+          </Button>
+          <Button variant="outline" color="error">
+            Error
+          </Button>
+          <Button variant="outline" color="opaque">
+            Opaque
+          </Button>
+        </div>
+        <div className="p-2 flex space-x-4">
+          <Button variant="flat" color="primary">
+            Primary
+          </Button>
+          <Button variant="flat" color="secondary">
+            Secondary
+          </Button>
+          <Button variant="flat" color="strong">
+            Strong
+          </Button>
+          <Button variant="flat" color="error">
+            Error
+          </Button>
+          <Button variant="flat" color="opaque">
+            Opaque
+          </Button>
+        </div>
+        <div className="p-2 flex space-x-4">
+          <Button variant="transparent" color="primary">
+            Primary
+          </Button>
+          <Button variant="transparent" color="secondary">
+            Secondary
+          </Button>
+          <Button variant="transparent" color="strong">
+            Strong
+          </Button>
+          <Button variant="transparent" color="error">
+            Error
+          </Button>
+          <Button variant="transparent" color="opaque">
+            Opaque
+          </Button>
+        </div>
+      </div>
+      <div className="p-2">
+        <div className="p-2 flex space-x-4 items-center">
+          <Button size="xs">Extra Small</Button>
+          <Button size="sm">Small</Button>
+          <Button size="md">Medium (Default)</Button>
+          <Button size="lg">Large</Button>
+          <Button size="xl">Extra Large</Button>
+        </div>
+        <div className="p-2 flex space-x-4 items-center">
+          <Button shape="pill" size="xs">
+            Extra Small
+          </Button>
+          <Button shape="pill" size="sm">
+            Small
+          </Button>
+          <Button shape="pill" size="md">
+            Medium (Default)
+          </Button>
+          <Button shape="pill" size="lg">
+            Large
+          </Button>
+          <Button shape="pill" size="xl">
+            Extra Large
+          </Button>
+        </div>
+        <div className="p-2 flex space-x-4 items-center">
+          <Button shape="circle" size="xs">
+            xs
+          </Button>
+          <Button shape="circle" size="sm">
+            sm
+          </Button>
+          <Button shape="circle" size="md">
+            md
+          </Button>
+          <Button shape="circle" size="lg">
+            lg
+          </Button>
+          <Button shape="circle" size="xl">
+            xl
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

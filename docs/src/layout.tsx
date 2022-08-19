@@ -22,7 +22,7 @@ export const Layout: React.FC = () => {
           </div>
         ))}
       </div>
-      <div className="adiago-layout-view">
+      <div className="adiago-layout-view p-4">
         <LayoutPage />
       </div>
     </div>

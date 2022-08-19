@@ -29,6 +29,12 @@ module.exports = {
           800: '#0f861f',
           900: '#0c6d19'
         }
+      },
+      dropShadow: {
+        leaf: '0 1px 2px rgb(25 223 51 / 0.5)',
+        djent: '0 1px 2px rgb(31 48 37 / 0.2)',
+        blue: '0 1px 2px rgb(59 131 246 / 0.4)',
+        red: '0 1px 2px rgb(239 68 68 / 0.4)'
       }
     }
   },
