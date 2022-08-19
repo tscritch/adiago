@@ -51,6 +51,9 @@ export default [
           insertAt: 'top'
         }
       })
-    ]
+    ],
+    watch: {
+      include: ['src/**/*']
+    }
   }
 ];

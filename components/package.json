@@ -23,7 +23,7 @@
   "browser": "dist/index.js",
   "scripts": {
     "build": "NODE_ENV=production rollup -c",
-    "watch": "NODE_ENV=production rollup -c --watch --watch.include=src/**/*"
+    "watch": "node watch.js"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0 || ^18.0",
@@ -37,6 +37,7 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.4",
     "autoprefixer": "^10.4.8",
+    "chokidar": "^3.5.3",
     "postcss": "^8.4.16",
     "rollup": "^2.78.0",
     "rollup-plugin-postcss": "^4.0.2",
