@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Sidebar } from '@adiago/components';
 import * as docsPages from './pages/docs';
 import { LayoutHeader } from './layout-header';
 
@@ -20,17 +21,26 @@ export const Layout: React.FC = () => {
   const LayoutPage = DocsPages[pageComponentName];
 
   return (
-    <div className="adiago-layout">
+    <div className="adiago-layout h-full">
       <LayoutHeader />
-      <div className="adiago-layout-navigation">
-        {cList.map((name) => (
-          <div key={name} className="p-2">
-            <Link to={`/docs/${name}`}>{name}</Link>
-          </div>
-        ))}
-      </div>
-      <div className="adiago-layout-view p-4">
-        <LayoutPage />
+      <div className="adiago-layout-body flex w-full h-[calc(100%-3rem)]">
+        <Sidebar.Root>
+          <Sidebar.List>
+            {cList.map((name) => (
+              <Link key={name} to={`/docs/${name}`}>
+                <div
+                  className={`px-3 py-2 mb-1 text-sm rounded ${
+                    pageName === name ? 'bg-djent-500 text-white' : 'hover:bg-neutral-100'
+                  }`}>
+                  {name}
+                </div>
+              </Link>
+            ))}
+          </Sidebar.List>
+        </Sidebar.Root>
+        <div className="adiago-layout-view p-4 w-full">
+          <LayoutPage />
+        </div>
       </div>
     </div>
   );

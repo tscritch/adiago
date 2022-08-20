@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const LayoutHeader: React.FC = () => {
   return (
-    <div className="adiago-layout-header w-full p-2 flex justify-between items-center border-b border-neutral-100 dark:border-neutral-800">
+    <div className="adiago-layout-header w-full p-2 h-12 flex justify-between items-center border-b border-neutral-100 dark:border-neutral-800">
       <Link to="/">
         <div className="flex items-center space-x-1">
           <img src="/logo.png" className="w-8" />
