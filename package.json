@@ -9,8 +9,9 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "prepare": "husky install",
-    "dev:setup": "cd components && yarn link && cd .. && cd docs && yarn link '@adiago/components'",
-    "dev": "cd components && yarn "
+    "dev:setup": "cd components && yarn link && cd ../docs && yarn link '@adiago/components'",
+    "dev:components": "cd components && yarn watch",
+    "dev:docs": "cd docs && yarn dev"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.33.1",
