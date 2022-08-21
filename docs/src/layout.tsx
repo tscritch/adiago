@@ -25,20 +25,20 @@ export const Layout: React.FC = () => {
       <LayoutHeader />
       <div className="adiago-layout-body flex w-full h-[calc(100%-3rem)]">
         <Sidebar.Root>
-          <Sidebar.List>
+          <Sidebar.Content className="p-2">
             {cList.map((name) => (
               <Link key={name} to={`/docs/${name}`}>
                 <div
-                  className={`px-3 py-2 mb-1 text-sm rounded ${
-                    pageName === name ? 'bg-djent-500 text-white' : 'hover:bg-neutral-100'
+                  className={`px-2 py-1 mb-1 text-xs rounded ${
+                    pageName === name ? 'bg-djent-500 text-white' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'
                   }`}>
                   {name}
                 </div>
               </Link>
             ))}
-          </Sidebar.List>
+          </Sidebar.Content>
         </Sidebar.Root>
-        <div className="adiago-layout-view p-4 w-full">
+        <div className="adiago-layout-view p-4 w-full h-full">
           <LayoutPage />
         </div>
       </div>

@@ -1,2 +1,2 @@
-export { SidebarList as List } from './sidebar-list';
+export { SidebarContent as Content } from './sidebar-content';
 export { SidebarRoot as Root } from './sidebar-root';
