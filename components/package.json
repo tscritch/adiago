@@ -47,6 +47,7 @@
     "tslib": "^2.4.0"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^1.0.0",
     "@radix-ui/react-scroll-area": "^1.0.0"
   }
 }
