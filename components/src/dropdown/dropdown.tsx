@@ -12,7 +12,6 @@ import {
   DropdownMenuItemIndicatorProps as RadixDropdownMenuItemIndicatorProps,
   DropdownMenuLabelProps as RadixDropdownMenuLabelProps,
   DropdownMenuSeparatorProps as RadixDropdownMenuSeparatorProps,
-  DropdownMenuSubProps as RadixDropdownMenuSubProps,
   DropdownMenuSubTriggerProps as RadixDropdownMenuSubTriggerProps,
   DropdownMenuSubContentProps as RadixDropdownMenuSubContentProps
 } from '@radix-ui/react-dropdown-menu';
