@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "jsx": "react-jsx",
+    "jsx": "react",
     "outDir": "dist",
     "declaration": true,
-    "moduleResolution": "node"
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDeclarationOnly": true
   },
   "include": ["src"]
 }
