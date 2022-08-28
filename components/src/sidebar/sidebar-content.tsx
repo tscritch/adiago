@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { ScrollAreaVertical } from '../scroll-area/scroll-area';
 
-interface SidebarContentProps {
+export interface SidebarContentProps {
   children?: React.ReactNode;
   className?: string;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import * as RadixScrollArea from '@radix-ui/react-scroll-area';
 
-interface ScrollAreaProps {
+export interface ScrollAreaProps {
   children?: React.ReactNode;
   className?: string;
 }

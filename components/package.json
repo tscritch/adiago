@@ -22,10 +22,15 @@
   "main": "dist/index.js",
   "module": "dist/index.module.js",
   "types": "dist/index.d.ts",
-  "sideEffects": false,
+  "sideEffects": true,
+  "targets": {
+    "main": {
+      "optimize": true
+    }
+  },
   "scripts": {
-    "build": "NODE_ENV=production parcel build --no-cache",
-    "watch": "node scripts/watch.js"
+    "build": "parcel build",
+    "watch": "node ./scripts/watch.js"
   },
   "peerDependencies": {
     "classnames": "^2.0",

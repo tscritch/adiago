@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../button/button';
+import { Button } from '../button';
 import { getTheme, setTheme } from '../_utils/root/functions';
 
 export const ThemeToggleButton = () => {

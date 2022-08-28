@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-type TSidebarPosition = 'left' | 'right';
+export type TSidebarPosition = 'left' | 'right';
 
-interface SidebarRootProps {
+export interface SidebarRootProps {
   children?: React.ReactNode;
   position?: TSidebarPosition;
 }
