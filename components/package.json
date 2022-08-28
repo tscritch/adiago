@@ -18,12 +18,19 @@
   "bugs": {
     "url": "https://github.com/tscritch/adiago/issues"
   },
+  "source": "src/index.ts",
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "browser": "dist/index.js",
+  "module": "dist/index.module.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": true,
+  "targets": {
+    "main": {
+      "optimize": true
+    }
+  },
   "scripts": {
-    "build": "NODE_ENV=production rollup -c",
-    "watch": "node scripts/watch.js"
+    "build": "parcel build",
+    "watch": "node ./scripts/watch.js"
   },
   "peerDependencies": {
     "classnames": "^2.0",
@@ -31,23 +38,24 @@
     "react-dom": "^16.8 || ^17.0 || ^18.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "@babel/preset-env": "^7.18.10",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.4",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-transform-typescript": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/template": "^7.16.7",
+    "@parcel/babel-plugin-transform-runtime": "^2.4.1",
+    "@parcel/babel-preset-env": "^2.4.1",
+    "@parcel/packager-ts": "2.4.1",
+    "@parcel/transformer-typescript-types": "2.4.1",
     "autoprefixer": "^10.4.8",
-    "chokidar": "^3.5.3",
+    "babel-loader": "^8.2.5",
+    "parcel": "2.4.1",
     "postcss": "^8.4.16",
-    "rollup": "^2.78.0",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2",
     "tailwindcss": "^3.1.8",
-    "tslib": "^2.4.0"
+    "typescript": "4.7.4"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^1.0.0",
+    "@babel/runtime": "^7.18.9",
     "@radix-ui/react-scroll-area": "^1.0.0"
   }
 }

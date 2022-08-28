@@ -1,2 +1,6 @@
 @tailwind components;
 @tailwind utilities;
+
+.temp {
+  color: white;
+}
