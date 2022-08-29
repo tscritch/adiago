@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-type TInputVariants = 'standard' | 'invisible';
+export type TInputVariants = 'standard' | 'invisible';
 
-interface InputProps extends React.HTMLProps<HTMLInputElement> {
+export interface InputProps extends React.HTMLProps<HTMLInputElement> {
   label?: string;
   icon?: string;
   variant?: TInputVariants;

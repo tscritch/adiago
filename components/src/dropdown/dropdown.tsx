@@ -4,6 +4,9 @@ import React from 'react';
 import classnames from 'classnames';
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu';
 import {
+  DropdownMenuProps as RadixDropdownMenuProps,
+  DropdownMenuTriggerProps as RadixDropdownMenuTriggerProps,
+  DropdownMenuSubProps as RadixDropdownMenuSubProps,
   DropdownMenuContentProps as RadixDropdownMenuContentProps,
   DropdownMenuItemProps as RadixDropdownMenuItemProps,
   DropdownMenuCheckboxItemProps as RadixDropdownMenuCheckboxItemProps,
@@ -16,34 +19,50 @@ import {
   DropdownMenuSubContentProps as RadixDropdownMenuSubContentProps
 } from '@radix-ui/react-dropdown-menu';
 
-export const DropdownRoot = RadixDropdown.Root;
+export const DropdownMenuRoot = RadixDropdown.Root;
+export type DropdownMenuRootProps = RadixDropdownMenuProps;
 export const DropdownMenuTrigger = RadixDropdown.Trigger;
+export type DropdownMenuTriggerProps = RadixDropdownMenuTriggerProps;
 export const DropdownMenuSub = RadixDropdown.Sub;
+export type DropdownMenuSubProps = RadixDropdownMenuSubProps;
 
 // Content
-interface DropdownMenuContentProps extends RadixDropdownMenuContentProps {
+// export interface DropdownMenuContentProps extends RadixDropdownMenuContentProps {
+//   classOverride?: string;
+// }
+export type DropdownMenuContentProps = RadixDropdownMenuContentProps & {
   classOverride?: string;
-}
+};
 export const DropdownMenuContent: React.FC<DropdownMenuContentProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-content overflow-hidden', className);
+  const classNames =
+    classOverride ??
+    classnames(
+      'adiago-dropdown-content overflow-hidden min-w-[16rem] p-1 rounded shadow bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white',
+      className
+    );
 
   return <RadixDropdown.Content {...props} className={classNames} />;
 };
 DropdownMenuContent.displayName = 'DropdownMenuContent';
 
 // Item
-interface DropdownMenuItemProps extends RadixDropdownMenuItemProps {
+export interface DropdownMenuItemProps extends RadixDropdownMenuItemProps {
   classOverride?: string;
 }
 export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-item', className);
+  const classNames =
+    classOverride ??
+    classnames(
+      'adiago-dropdown-item py-1 px-1.5 text-xs cursor-pointer rounded-sm hover:bg-leaf-200 hover:text-leaf-900 hover:outline-none',
+      className
+    );
 
   return <RadixDropdown.Item {...props} className={classNames} />;
 };
 DropdownMenuItem.displayName = 'DropdownMenuItem';
 
 // Checkbox Item
-interface DropdownMenuCheckboxItemProps extends RadixDropdownMenuCheckboxItemProps {
+export interface DropdownMenuCheckboxItemProps extends RadixDropdownMenuCheckboxItemProps {
   classOverride?: string;
 }
 export const DropdownMenuCheckboxItem: React.FC<DropdownMenuCheckboxItemProps> = ({
@@ -58,7 +77,7 @@ export const DropdownMenuCheckboxItem: React.FC<DropdownMenuCheckboxItemProps> =
 DropdownMenuCheckboxItem.displayName = 'DropdownMenuCheckboxItem';
 
 // Radio Group
-interface DropdownMenuRadioGroupProps extends RadixDropdownMenuRadioGroupProps {
+export interface DropdownMenuRadioGroupProps extends RadixDropdownMenuRadioGroupProps {
   classOverride?: string;
 }
 export const DropdownMenuRadioGroup: React.FC<DropdownMenuRadioGroupProps> = ({
@@ -73,7 +92,7 @@ export const DropdownMenuRadioGroup: React.FC<DropdownMenuRadioGroupProps> = ({
 DropdownMenuRadioGroup.displayName = 'DropdownMenuRadioGroup';
 
 // Radio Item
-interface DropdownMenuRadioItemProps extends RadixDropdownMenuRadioItemProps {
+export interface DropdownMenuRadioItemProps extends RadixDropdownMenuRadioItemProps {
   classOverride?: string;
 }
 export const DropdownMenuRadioItem: React.FC<DropdownMenuRadioItemProps> = ({ className, classOverride, ...props }) => {
@@ -84,7 +103,7 @@ export const DropdownMenuRadioItem: React.FC<DropdownMenuRadioItemProps> = ({ cl
 DropdownMenuRadioItem.displayName = 'DropdownMenuRadioItem';
 
 // Item Indicator
-interface DropdownMenuItemIndicatorProps extends RadixDropdownMenuItemIndicatorProps {
+export interface DropdownMenuItemIndicatorProps extends RadixDropdownMenuItemIndicatorProps {
   classOverride?: string;
 }
 export const DropdownMenuItemIndicator: React.FC<DropdownMenuItemIndicatorProps> = ({
@@ -99,7 +118,7 @@ export const DropdownMenuItemIndicator: React.FC<DropdownMenuItemIndicatorProps>
 DropdownMenuItemIndicator.displayName = 'DropdownMenuItemIndicator';
 
 // Label
-interface DropdownMenuLabelProps extends RadixDropdownMenuLabelProps {
+export interface DropdownMenuLabelProps extends RadixDropdownMenuLabelProps {
   classOverride?: string;
 }
 export const DropdownMenuLabel: React.FC<DropdownMenuLabelProps> = ({ className, classOverride, ...props }) => {
@@ -110,18 +129,7 @@ export const DropdownMenuLabel: React.FC<DropdownMenuLabelProps> = ({ className,
 DropdownMenuLabel.displayName = 'DropdownMenuLabel';
 
 // Separator
-interface DropdownMenuSeparatorProps extends RadixDropdownMenuSeparatorProps {
-  classOverride?: string;
-}
-export const DropdownMenuSeparator: React.FC<DropdownMenuSeparatorProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-separator', className);
-
-  return <RadixDropdown.Separator {...props} className={classNames} />;
-};
-DropdownMenuSeparator.displayName = 'DropdownMenuSeparator';
-
-// Separator
-interface DropdownMenuSeparatorProps extends RadixDropdownMenuSeparatorProps {
+export interface DropdownMenuSeparatorProps extends RadixDropdownMenuSeparatorProps {
   classOverride?: string;
 }
 export const DropdownMenuSeparator: React.FC<DropdownMenuSeparatorProps> = ({ className, classOverride, ...props }) => {
@@ -132,7 +140,7 @@ export const DropdownMenuSeparator: React.FC<DropdownMenuSeparatorProps> = ({ cl
 DropdownMenuSeparator.displayName = 'DropdownMenuSeparator';
 
 // SubTrigger
-interface DropdownMenuSubTriggerProps extends RadixDropdownMenuSubTriggerProps {
+export interface DropdownMenuSubTriggerProps extends RadixDropdownMenuSubTriggerProps {
   classOverride?: string;
 }
 export const DropdownMenuSubTrigger: React.FC<DropdownMenuSubTriggerProps> = ({
@@ -147,7 +155,7 @@ export const DropdownMenuSubTrigger: React.FC<DropdownMenuSubTriggerProps> = ({
 DropdownMenuSubTrigger.displayName = 'DropdownMenuSubTrigger';
 
 // SubContent
-interface DropdownMenuSubContentProps extends RadixDropdownMenuSubContentProps {
+export interface DropdownMenuSubContentProps extends RadixDropdownMenuSubContentProps {
   classOverride?: string;
 }
 export const DropdownMenuSubContent: React.FC<DropdownMenuSubContentProps> = ({

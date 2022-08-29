@@ -3,10 +3,10 @@ import classnames from 'classnames';
 
 type ReducedHTMLButtonElement = Omit<React.HTMLProps<HTMLButtonElement>, 'size'>;
 
-type TButtonColors = 'primary' | 'secondary' | 'strong' | 'error' | 'opaque';
-type TButtonShapes = 'rect' | 'pill' | 'circle';
-type TButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-type TButtonVariants = 'standard' | 'outline' | 'flat' | 'transparent';
+export type TButtonColors = 'primary' | 'secondary' | 'strong' | 'error' | 'opaque';
+export type TButtonShapes = 'rect' | 'pill' | 'circle';
+export type TButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type TButtonVariants = 'standard' | 'outline' | 'flat' | 'transparent';
 
 export interface ButtonProps extends ReducedHTMLButtonElement {
   children: React.ReactNode;
@@ -29,6 +29,7 @@ export interface ButtonProps extends ReducedHTMLButtonElement {
   variant?: TButtonVariants;
 }
 
+// @todo: add colors for focus state
 const baseClasses = 'adiago-button font-semibold transition-all duration-75';
 const colorClasses: Record<TButtonVariants, Record<TButtonColors, string>> = {
   standard: {
