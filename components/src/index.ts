@@ -4,6 +4,20 @@ import './_utils/styles.css';
 export { AdiagoRoot } from './_utils/root/root';
 export { Button } from './button';
 export { default as Dropdown } from './dropdown';
+export type {
+  DropdownMenuRootProps,
+  DropdownMenuContentProps,
+  DropdownMenuItemProps,
+  DropdownMenuCheckboxItemProps,
+  DropdownMenuRadioGroupProps,
+  DropdownMenuRadioItemProps,
+  DropdownMenuItemIndicatorProps,
+  DropdownMenuLabelProps,
+  DropdownMenuSeparatorProps,
+  DropdownMenuSubProps,
+  DropdownMenuSubTriggerProps,
+  DropdownMenuSubContentProps
+} from './dropdown/dropdown';
 export { Input } from './input';
 export { default as ScrollArea } from './scroll-area';
 export { default as Sidebar } from './sidebar';

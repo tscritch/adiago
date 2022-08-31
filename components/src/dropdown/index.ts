@@ -14,7 +14,7 @@ import {
   DropdownMenuSubContent
 } from './dropdown';
 
-export default {
+const Dropdown = {
   Root: DropdownMenuRoot,
   Trigger: DropdownMenuTrigger,
   Content: DropdownMenuContent,
@@ -30,17 +30,4 @@ export default {
   SubContent: DropdownMenuSubContent
 };
 
-export type {
-  DropdownMenuRootProps,
-  DropdownMenuContentProps,
-  DropdownMenuItemProps,
-  DropdownMenuCheckboxItemProps,
-  DropdownMenuRadioGroupProps,
-  DropdownMenuRadioItemProps,
-  DropdownMenuItemIndicatorProps,
-  DropdownMenuLabelProps,
-  DropdownMenuSeparatorProps,
-  DropdownMenuSubProps,
-  DropdownMenuSubTriggerProps,
-  DropdownMenuSubContentProps
-} from './dropdown';
+export default Dropdown;

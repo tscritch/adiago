@@ -37,25 +37,27 @@ export const DropdownMenuContent: React.FC<DropdownMenuContentProps> = ({ classN
   const classNames =
     classOverride ??
     classnames(
-      'adiago-dropdown-content overflow-hidden min-w-[16rem] p-1 rounded shadow bg-white text-neutral-900 dark:bg-neutral-900 dark:text-white',
+      'adiago-dropdown-content overflow-hidden min-w-[16rem] p-1 rounded shadow border border-neutral-200 bg-white text-leaf-900 dark:bg-neutral-900 dark:text-white',
       className
     );
 
-  return <RadixDropdown.Content {...props} className={classNames} />;
+  return (
+    <RadixDropdown.Portal>
+      <RadixDropdown.Content {...props} className={classNames} />;
+    </RadixDropdown.Portal>
+  );
 };
 DropdownMenuContent.displayName = 'DropdownMenuContent';
 
 // Item
+const dropdownMenuItemClassNamesBase = classnames(
+  'relative py-1 px-1.5 pl-6 text-sm cursor-pointer rounded-sm transition duration-75 hover:bg-leaf-200 hover:text-leaf-900 hover:outline-none rx-disabled:text-neutral-300 rx-disabled:pointer-events-none'
+);
 export interface DropdownMenuItemProps extends RadixDropdownMenuItemProps {
   classOverride?: string;
 }
 export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({ className, classOverride, ...props }) => {
-  const classNames =
-    classOverride ??
-    classnames(
-      'adiago-dropdown-item py-1 px-1.5 text-xs cursor-pointer rounded-sm hover:bg-leaf-200 hover:text-leaf-900 hover:outline-none',
-      className
-    );
+  const classNames = classOverride ?? classnames('adiago-dropdown-item', dropdownMenuItemClassNamesBase, className);
 
   return <RadixDropdown.Item {...props} className={classNames} />;
 };
@@ -64,15 +66,26 @@ DropdownMenuItem.displayName = 'DropdownMenuItem';
 // Checkbox Item
 export interface DropdownMenuCheckboxItemProps extends RadixDropdownMenuCheckboxItemProps {
   classOverride?: string;
+  indicatorOverride?: React.FC<DropdownMenuItemIndicatorProps>;
 }
 export const DropdownMenuCheckboxItem: React.FC<DropdownMenuCheckboxItemProps> = ({
   className,
   classOverride,
+  children,
+  indicatorOverride,
   ...props
 }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-checkbox-item', className);
+  const classNames =
+    classOverride ?? classnames('adiago-dropdown-checkbox-item', dropdownMenuItemClassNamesBase, className);
 
-  return <RadixDropdown.CheckboxItem {...props} className={classNames} />;
+  return (
+    <RadixDropdown.CheckboxItem {...props} className={classNames}>
+      <>
+        {indicatorOverride || <DropdownMenuItemIndicator>✓</DropdownMenuItemIndicator>}
+        {children}
+      </>
+    </RadixDropdown.CheckboxItem>
+  );
 };
 DropdownMenuCheckboxItem.displayName = 'DropdownMenuCheckboxItem';
 
@@ -94,11 +107,26 @@ DropdownMenuRadioGroup.displayName = 'DropdownMenuRadioGroup';
 // Radio Item
 export interface DropdownMenuRadioItemProps extends RadixDropdownMenuRadioItemProps {
   classOverride?: string;
+  indicatorOverride?: React.FC<DropdownMenuItemIndicatorProps>;
 }
-export const DropdownMenuRadioItem: React.FC<DropdownMenuRadioItemProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-radio-item', className);
+export const DropdownMenuRadioItem: React.FC<DropdownMenuRadioItemProps> = ({
+  className,
+  classOverride,
+  children,
+  indicatorOverride,
+  ...props
+}) => {
+  const classNames =
+    classOverride ?? classnames('adiago-dropdown-radio-item', dropdownMenuItemClassNamesBase, className);
 
-  return <RadixDropdown.RadioItem {...props} className={classNames} />;
+  return (
+    <RadixDropdown.RadioItem {...props} className={classNames}>
+      <>
+        {indicatorOverride || <DropdownMenuItemIndicator>⌾</DropdownMenuItemIndicator>}
+        {children}
+      </>
+    </RadixDropdown.RadioItem>
+  );
 };
 DropdownMenuRadioItem.displayName = 'DropdownMenuRadioItem';
 
@@ -111,7 +139,12 @@ export const DropdownMenuItemIndicator: React.FC<DropdownMenuItemIndicatorProps>
   classOverride,
   ...props
 }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-item-indicator', className);
+  const classNames =
+    classOverride ??
+    classnames(
+      'adiago-dropdown-item-indicator absolute top-1 left-1 w-6 inline-flex items-center justify-center',
+      className
+    );
 
   return <RadixDropdown.ItemIndicator {...props} className={classNames} />;
 };
@@ -122,7 +155,8 @@ export interface DropdownMenuLabelProps extends RadixDropdownMenuLabelProps {
   classOverride?: string;
 }
 export const DropdownMenuLabel: React.FC<DropdownMenuLabelProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-label', className);
+  const classNames =
+    classOverride ?? classnames('adiago-dropdown-label', 'py-[5px] px-1.5 pl-6 text-xs text-neutral-400', className);
 
   return <RadixDropdown.Label {...props} className={classNames} />;
 };
@@ -133,7 +167,7 @@ export interface DropdownMenuSeparatorProps extends RadixDropdownMenuSeparatorPr
   classOverride?: string;
 }
 export const DropdownMenuSeparator: React.FC<DropdownMenuSeparatorProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-separator', className);
+  const classNames = classOverride ?? classnames('adiago-dropdown-separator h-[1px] m-[5px] bg-leaf-300', className);
 
   return <RadixDropdown.Separator {...props} className={classNames} />;
 };
@@ -165,6 +199,10 @@ export const DropdownMenuSubContent: React.FC<DropdownMenuSubContentProps> = ({
 }) => {
   const classNames = classOverride ?? classnames('adiago-dropdown-sub-content', className);
 
-  return <RadixDropdown.SubContent {...props} className={classNames} />;
+  return (
+    <RadixDropdown.Portal>
+      <RadixDropdown.SubContent {...props} className={classNames} />;
+    </RadixDropdown.Portal>
+  );
 };
 DropdownMenuSubContent.displayName = 'DropdownMenuSubContent';

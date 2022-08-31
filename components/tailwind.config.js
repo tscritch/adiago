@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   darkMode: 'class',
@@ -38,7 +41,20 @@ module.exports = {
       }
     }
   },
-  plugins: [],
+  plugins: [
+    // radix disabled attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-disabled', '&[data-disabled]');
+    }),
+    // radix highlighted attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-highlighted', '&[data-highlighted]');
+    }),
+    // radix state open attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-state-open', '&[data-state="open"]');
+    })
+  ],
   corePlugins: {
     preflight: false
   }
