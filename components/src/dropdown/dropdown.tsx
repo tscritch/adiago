@@ -2,6 +2,7 @@
 
 import React from 'react';
 import classnames from 'classnames';
+import { StopIcon, CheckIcon } from '@heroicons/react/24/solid';
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu';
 import {
   DropdownMenuProps as RadixDropdownMenuProps,
@@ -27,23 +28,20 @@ export const DropdownMenuSub = RadixDropdown.Sub;
 export type DropdownMenuSubProps = RadixDropdownMenuSubProps;
 
 // Content
-// export interface DropdownMenuContentProps extends RadixDropdownMenuContentProps {
-//   classOverride?: string;
-// }
+const dropdownMenuContentClasses = classnames(
+  'overflow-hidden min-w-[16rem] p-1 rounded shadow border border-neutral-200 bg-white text-leaf-900 dark:bg-neutral-900 dark:text-white dark:border-neutral-700'
+);
 export type DropdownMenuContentProps = RadixDropdownMenuContentProps & {
   classOverride?: string;
 };
 export const DropdownMenuContent: React.FC<DropdownMenuContentProps> = ({ className, classOverride, ...props }) => {
-  const classNames =
-    classOverride ??
-    classnames(
-      'adiago-dropdown-content overflow-hidden min-w-[16rem] p-1 rounded shadow border border-neutral-200 bg-white text-leaf-900 dark:bg-neutral-900 dark:text-white',
-      className
-    );
+  const classNames = classOverride ?? classnames('adiago-dropdown-content', dropdownMenuContentClasses, className);
 
   return (
     <RadixDropdown.Portal>
-      <RadixDropdown.Content {...props} className={classNames} />;
+      <>
+        <RadixDropdown.Content {...props} className={classNames} />;
+      </>
     </RadixDropdown.Portal>
   );
 };
@@ -51,7 +49,7 @@ DropdownMenuContent.displayName = 'DropdownMenuContent';
 
 // Item
 const dropdownMenuItemClassNamesBase = classnames(
-  'relative py-1 px-1.5 pl-6 text-sm cursor-pointer rounded-sm transition duration-75 hover:bg-leaf-200 hover:text-leaf-900 hover:outline-none rx-disabled:text-neutral-300 rx-disabled:pointer-events-none'
+  'relative py-1 px-1.5 pl-6 text-sm cursor-pointer rounded-sm transition duration-75 hover:bg-leaf-200 hover:text-leaf-900 hover:outline-none rx-disabled:text-neutral-300 rx-disabled:pointer-events-none dark:text-leaf-600 dark:hover:bg-leaf-900 dark:hover:text-leaf-100 dark:rx-disabled:text-neutral-500'
 );
 export interface DropdownMenuItemProps extends RadixDropdownMenuItemProps {
   classOverride?: string;
@@ -81,7 +79,11 @@ export const DropdownMenuCheckboxItem: React.FC<DropdownMenuCheckboxItemProps> =
   return (
     <RadixDropdown.CheckboxItem {...props} className={classNames}>
       <>
-        {indicatorOverride || <DropdownMenuItemIndicator>✓</DropdownMenuItemIndicator>}
+        {indicatorOverride || (
+          <DropdownMenuItemIndicator className="top-1.5 left-2 w-3">
+            <CheckIcon />
+          </DropdownMenuItemIndicator>
+        )}
         {children}
       </>
     </RadixDropdown.CheckboxItem>
@@ -122,7 +124,11 @@ export const DropdownMenuRadioItem: React.FC<DropdownMenuRadioItemProps> = ({
   return (
     <RadixDropdown.RadioItem {...props} className={classNames}>
       <>
-        {indicatorOverride || <DropdownMenuItemIndicator>⌾</DropdownMenuItemIndicator>}
+        {indicatorOverride || (
+          <DropdownMenuItemIndicator className="top-2.5 left-2 w-2">
+            <StopIcon />
+          </DropdownMenuItemIndicator>
+        )}
         {children}
       </>
     </RadixDropdown.RadioItem>
@@ -141,10 +147,7 @@ export const DropdownMenuItemIndicator: React.FC<DropdownMenuItemIndicatorProps>
 }) => {
   const classNames =
     classOverride ??
-    classnames(
-      'adiago-dropdown-item-indicator absolute top-1 left-1 w-6 inline-flex items-center justify-center',
-      className
-    );
+    classnames('adiago-dropdown-item-indicator absolute inline-flex items-center justify-center', className);
 
   return <RadixDropdown.ItemIndicator {...props} className={classNames} />;
 };
@@ -156,7 +159,12 @@ export interface DropdownMenuLabelProps extends RadixDropdownMenuLabelProps {
 }
 export const DropdownMenuLabel: React.FC<DropdownMenuLabelProps> = ({ className, classOverride, ...props }) => {
   const classNames =
-    classOverride ?? classnames('adiago-dropdown-label', 'py-[5px] px-1.5 pl-6 text-xs text-neutral-400', className);
+    classOverride ??
+    classnames(
+      'adiago-dropdown-label',
+      'py-[5px] px-1.5 pl-6 text-xs text-neutral-400 dark:text-neutral-500',
+      className
+    );
 
   return <RadixDropdown.Label {...props} className={classNames} />;
 };
@@ -167,7 +175,8 @@ export interface DropdownMenuSeparatorProps extends RadixDropdownMenuSeparatorPr
   classOverride?: string;
 }
 export const DropdownMenuSeparator: React.FC<DropdownMenuSeparatorProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-separator h-[1px] m-[5px] bg-leaf-300', className);
+  const classNames =
+    classOverride ?? classnames('adiago-dropdown-separator h-[1px] m-[5px] bg-leaf-300 dark:bg-leaf-900', className);
 
   return <RadixDropdown.Separator {...props} className={classNames} />;
 };
@@ -182,7 +191,14 @@ export const DropdownMenuSubTrigger: React.FC<DropdownMenuSubTriggerProps> = ({
   classOverride,
   ...props
 }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-sub-trigger', className);
+  const classNames =
+    classOverride ??
+    classnames(
+      'adiago-dropdown-sub-trigger',
+      dropdownMenuItemClassNamesBase,
+      'rx-state-open:bg-leaf-200 rx-state-open:text-leaf-900 dark:rx-state-open:bg-leaf-900 dark:rx-state-open:text-leaf-100',
+      className
+    );
 
   return <RadixDropdown.SubTrigger {...props} className={classNames} />;
 };
@@ -197,11 +213,13 @@ export const DropdownMenuSubContent: React.FC<DropdownMenuSubContentProps> = ({
   classOverride,
   ...props
 }) => {
-  const classNames = classOverride ?? classnames('adiago-dropdown-sub-content', className);
+  const classNames = classOverride ?? classnames('adiago-dropdown-sub-content', dropdownMenuContentClasses, className);
 
   return (
     <RadixDropdown.Portal>
-      <RadixDropdown.SubContent {...props} className={classNames} />;
+      <>
+        <RadixDropdown.SubContent {...props} className={classNames} />;
+      </>
     </RadixDropdown.Portal>
   );
 };

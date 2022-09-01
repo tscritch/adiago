@@ -19,10 +19,8 @@ export const PageDocsDropdown = () => {
             <Dropdown.Item>Item 2</Dropdown.Item>
             <Dropdown.Item disabled>Item 3</Dropdown.Item>
             <Dropdown.Sub>
-              <Dropdown.SubTrigger>
-                <Dropdown.Item>More</Dropdown.Item>
-              </Dropdown.SubTrigger>
-              <Dropdown.SubContent>
+              <Dropdown.SubTrigger>More</Dropdown.SubTrigger>
+              <Dropdown.SubContent sideOffset={2} alignOffset={-5}>
                 <Dropdown.Item>Sub menu item 1</Dropdown.Item>
                 <Dropdown.Separator />
                 <Dropdown.Item>Sub menu item 2</Dropdown.Item>
