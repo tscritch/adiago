@@ -5,4 +5,3 @@ const ScrollArea = {
 };
 
 export default ScrollArea;
-export type { ScrollAreaProps } from './scroll-area';

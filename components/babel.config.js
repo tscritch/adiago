@@ -32,11 +32,17 @@ module.exports = {
         }
       }
     ],
-    '@babel/preset-react'
+    '@babel/preset-react',
+    [
+      '@babel/preset-typescript',
+      {
+        isTSX: true
+      }
+    ]
   ],
   plugins: [
     pureDisplayNames,
-    '@parcel/babel-plugin-transform-runtime',
-    ['@babel/plugin-transform-typescript', { isTSX: true }]
+    '@parcel/babel-plugin-transform-runtime'
+    // ['@babel/plugin-transform-typescript', { isTSX: true }]
   ]
 };

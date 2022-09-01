@@ -37,3 +37,14 @@ To start developing locally, use the following steps:
 1. Create a new file in the `docs/src/pages/docs` directory with the file name `page-docs-{component-name}.tsx`.
 1. Name the component `PageDocs{ComponentName}.tsx` and add it to the `index.ts` in the directory.
 1. You can now visit http://localhost:5173/{ComponentName} to see your new page.
+
+### Troubleshooting
+
+This library is built with [Parcel](https://parceljs.org/).
+I have tried esbuild, rollup and webpack. Each was either too slow or created files that did not work.
+
+There has been an open bug in `@parcel/transformer-typescript-types` package that is interfering with Typescript 4.8.0.  
+https://github.com/parcel-bundler/parcel/issues/8419
+
+There is another bug prohibiting the use of nested/doubly exported exports. This is the reason for the extra work in the index.ts files.
+https://github.com/parcel-bundler/parcel/issues/5911
