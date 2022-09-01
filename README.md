@@ -26,8 +26,25 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
 ## Requirements
 
-Adiago relies on `react`, `react-dom`, and `classnames` as peer dependencies.
+Adiago relies on `react`, `react-dom`, `classnames`, and `@heroicons/react` as peer dependencies.
 
 ## Development
 
 See [Adiago Development](/components/development.md)
+
+## Progress
+
+- [ ] Alert Dialog
+- [ ] Button
+- [ ] Checkbox
+- [x] Dropdown
+- [x] Input
+- [ ] Progress
+- [ ] Select
+- [ ] Sidebar
+  - [x] List items
+  - [ ] Collapsible items
+- [ ] Switch
+- [ ] Toast
+- [ ] Toggle Group
+- [ ] Tooltip
