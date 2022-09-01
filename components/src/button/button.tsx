@@ -29,7 +29,6 @@ export interface ButtonProps extends ReducedHTMLButtonElement {
   variant?: TButtonVariants;
 }
 
-// @todo: add colors for focus state
 const baseClasses = 'adiago-button font-semibold transition-all duration-75 focus-visible:outline-leaf-500';
 const colorClasses: Record<TButtonVariants, Record<TButtonColors, string>> = {
   standard: {

@@ -38,6 +38,7 @@ See [Adiago Development](/components/development.md)
 - [x] Button
 - [ ] Checkbox
 - [x] Dropdown
+  - [ ] Dropdown item color options
 - [x] Input
 - [ ] Progress
 - [ ] Select
