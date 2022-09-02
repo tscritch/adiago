@@ -34,10 +34,11 @@ See [Adiago Development](/components/development.md)
 
 ## Progress
 
-- [ ] Alert Dialog
+- [x] Alert Dialog
 - [x] Button
 - [ ] Checkbox
 - [x] Dropdown
+  - [ ] Dropdown item color options
 - [x] Input
 - [ ] Progress
 - [ ] Select
