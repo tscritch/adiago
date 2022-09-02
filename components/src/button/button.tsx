@@ -58,7 +58,8 @@ const colorClasses: Record<TButtonVariants, Record<TButtonColors, string>> = {
     strong:
       'bg-djent-100 text-djent-800 hover:bg-djent-200 dark:bg-djent-500 dark:text-djent-50 dark:hover:bg-djent-600',
     error: 'bg-red-100 text-red-600 hover:bg-red-200',
-    opaque: 'bg-neutral-100 text-neutral-800 hover:bg-neutral-200 dark:bg-neutral-700 dark:text-white'
+    opaque:
+      'bg-neutral-100 text-neutral-800 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700'
   },
   transparent: {
     primary: 'bg-transparent text-leaf-500 hover:bg-leaf-100 dark:hover:bg-leaf-900',
