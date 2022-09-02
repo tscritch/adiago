@@ -3,7 +3,10 @@ import {
   AlertDialogTrigger,
   AlertDialogAction,
   AlertDialogCancel,
-  AlertDialogContent
+  AlertDialogContent,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogButtonGroup
 } from './alert-dialog';
 
 const AlertDialog = {
@@ -11,7 +14,10 @@ const AlertDialog = {
   Trigger: AlertDialogTrigger,
   Action: AlertDialogAction,
   Cancel: AlertDialogCancel,
-  Content: AlertDialogContent
+  Content: AlertDialogContent,
+  Title: AlertDialogTitle,
+  Description: AlertDialogDescription,
+  ButtonGroup: AlertDialogButtonGroup
 };
 
 export default AlertDialog;
