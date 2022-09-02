@@ -91,7 +91,7 @@ export const AlertDialogButtonGroup: React.FC<AlertDialogButtonGroupProps> = ({
   children
 }) => {
   const classNames =
-    classOverride ?? classnames('adiago-alert-dialog-button-group pt-8 flex justify-end space-x-2', className);
+    classOverride ?? classnames('adiago-alert-dialog-button-group pt-8 flex justify-end space-x-4', className);
 
   return <div className={classNames}>{children}</div>;
 };
