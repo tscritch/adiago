@@ -34,7 +34,7 @@ See [Adiago Development](/components/development.md)
 
 ## Progress
 
-- [ ] Alert Dialog
+- [x] Alert Dialog
 - [x] Button
 - [ ] Checkbox
 - [x] Dropdown
