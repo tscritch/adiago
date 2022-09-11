@@ -6,11 +6,11 @@ import {
   SelectContent,
   SelectViewport,
   SelectGroup,
-  SelectItem
+  SelectItem,
   // SelectItemText,
   // SelectItemIndicator,
-  // SelectLabel,
-  // SelectSeparator,
+  SelectLabel,
+  SelectSeparator
   // SelectScrollUpButton,
   // SelectScrollDownButton
 } from './select';
@@ -23,11 +23,11 @@ const Select = {
   Content: SelectContent,
   Viewport: SelectViewport,
   Group: SelectGroup,
-  Item: SelectItem
+  Item: SelectItem,
   // ItemText: SelectItemText,
   // ItemIndicator: SelectItemIndicator,
-  // Label: SelectLabel,
-  // Separator: SelectSeparator,
+  Label: SelectLabel,
+  Separator: SelectSeparator
   // ScrollUpButton: SelectScrollUpButton,
   // ScrollDownButton: SelectScrollDownButton
 };

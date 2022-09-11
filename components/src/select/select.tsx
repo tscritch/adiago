@@ -9,11 +9,11 @@ import {
   SelectContentProps as RadixSelectContentProps,
   SelectViewportProps as RadixSelectViewportProps,
   // SelectGroupProps as RadixSelectGroupProps,
-  SelectItemProps as RadixSelectItemProps
+  SelectItemProps as RadixSelectItemProps,
   // SelectItemTextProps as RadixSelectItemTextProps,
   // SelectItemIndicatorProps as RadixSelectItemIndicatorProps,
-  // SelectLabelProps as RadixSelectLabelProps,
-  // SelectSeparatorProps as RadixSelectSeparatorProps,
+  SelectLabelProps as RadixSelectLabelProps,
+  SelectSeparatorProps as RadixSelectSeparatorProps
   // SelectScrollUpButtonProps as RadixSelectScrollUpButtonProps,
   // SelectScrollDownButtonProps as RadixSelectScrollDownButtonProps
 } from '@radix-ui/react-select';
@@ -105,7 +105,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
   const classNames =
     classOverride ??
     classnames(
-      'adiago-select-trigger py-1 pl-6 pr-8 flex items-center relative text-sm rounded-sm transition duration-75 text-leaf-900 cursor-pointer hover:outline-none hover:bg-leaf-200 hover:text-leaf-900 rx-disabled:text-neutral-300 rx-disabled:pointer-events-none dark:text-leaf-600 dark:hover:bg-leaf-900 dark:hover:text-leaf-100 dark:rx-disabled:text-neutral-500',
+      'adiago-select-item py-1 pl-6 pr-8 flex items-center relative text-sm rounded-sm transition duration-75 text-leaf-900 cursor-pointer hover:outline-none hover:bg-leaf-200 hover:text-leaf-900 rx-disabled:text-neutral-300 rx-disabled:pointer-events-none dark:text-white dark:hover:bg-djent-600 dark:hover:text-leaf-100 dark:rx-disabled:text-neutral-500',
       className
     );
 
@@ -120,3 +120,31 @@ export const SelectItem: React.FC<SelectItemProps> = ({
 };
 
 SelectItem.displayName = 'SelectItem';
+
+export interface SelectLabelProps extends RadixSelectLabelProps {
+  classOverride?: string;
+}
+export const SelectLabel: React.FC<SelectLabelProps> = ({ className, classOverride, ...props }) => {
+  const classNames =
+    classOverride ??
+    classnames('adiago-select-label py-1 px-6 text-xs text-neutral-500 dark:text-neutral-400', className);
+
+  return <RadixSelect.Label {...props} className={classNames} />;
+};
+
+SelectLabel.displayName = 'SelectLabel';
+
+export interface SelectSeparatorProps extends RadixSelectSeparatorProps {
+  classOverride?: string;
+  iconOverride?: React.ReactNode;
+}
+export const SelectSeparator = React.forwardRef<React.ElementRef<typeof RadixSelect.Label>, SelectSeparatorProps>(
+  ({ className, classOverride, asChild, ...props }, forwardedRef) => {
+    const classNames =
+      classOverride ?? classnames('adiago-select-separator h-[1px] m-1 bg-neutral-300 dark:bg-neutral-600', className);
+
+    return <RadixSelect.Separator {...props} className={classNames} ref={forwardedRef} />;
+  }
+);
+
+SelectSeparator.displayName = 'SelectSeparator';
