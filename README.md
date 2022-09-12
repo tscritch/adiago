@@ -41,7 +41,8 @@ See [Adiago Development](/components/development.md)
   - [ ] Dropdown item color options
 - [x] Input
 - [ ] Progress
-- [ ] Select
+- [x] Select
+  - [ ] Scroll Buttons
 - [ ] Sidebar
   - [x] List items
   - [ ] Collapsible items
