@@ -11,6 +11,7 @@ import {
   ToastActionProps as RadixToastActionProps,
   ToastCloseProps as RadixToastCloseProps
 } from '@radix-ui/react-toast';
+import './toast.css';
 
 export const ToastProvider = RadixToast.Provider;
 
@@ -31,13 +32,20 @@ export const ToastViewport: React.FC<ToastViewportProps> = ({ className, classOv
 ToastViewport.displayName = 'ToastViewport';
 
 // Root
+const animationClassNames = classnames(
+  'rx-state-open:animate-slide-in rx-state-closed:animate-hide rx-swipe-move:translate-x-[var(--radix-toast-swipe-move-x)] rx-swipe-cancel:translate-x-0 rx-swipe-cancel:transition-transform rx-swipe-end:animate-swipe-out'
+);
 export type ToastRootProps = RadixToastRootProps & {
   classOverride?: string;
 };
 export const ToastRoot: React.FC<ToastRootProps> = ({ className, classOverride, ...props }) => {
   const classNames =
     classOverride ??
-    classnames('adiago-toast-root bg-white rounded shadow-md p-3 grid items-center dark:bg-neutral-900', className);
+    classnames(
+      'adiago-toast-root w-72 bg-white rounded shadow-lg p-2 border border-neutral-100 dark:bg-neutral-900',
+      animationClassNames,
+      className
+    );
 
   return <RadixToast.Root className={classNames} {...props} />;
 };
@@ -49,7 +57,7 @@ export type ToastTitleProps = RadixToastTitleProps & {
 };
 export const ToastTitle: React.FC<ToastTitleProps> = ({ className, classOverride, ...props }) => {
   const classNames =
-    classOverride ?? classnames('adiago-toast-title text-neutral-900 font-semibold dark:text-white', className);
+    classOverride ?? classnames('adiago-toast-title text-neutral-900 font-semibold text-sm dark:text-white', className);
 
   return <RadixToast.Title className={classNames} {...props} />;
 };
@@ -61,8 +69,7 @@ export type ToastDescriptionProps = RadixToastDescriptionProps & {
 };
 export const ToastDescription: React.FC<ToastDescriptionProps> = ({ className, classOverride, ...props }) => {
   const classNames =
-    classOverride ??
-    classnames('adiago-toast-description text-neutral-700 font-semibold dark:text-neutral-200', className);
+    classOverride ?? classnames('adiago-toast-description text-neutral-700 text-xs dark:text-neutral-200', className);
 
   return <RadixToast.Description className={classNames} {...props} />;
 };
@@ -84,7 +91,7 @@ export type ToastCloseProps = RadixToastCloseProps & {
   classOverride?: string;
 };
 export const ToastClose: React.FC<ToastCloseProps> = ({ className, classOverride, ...props }) => {
-  const classNames = classOverride ?? classnames('adiago-toast-cancel', className);
+  const classNames = classOverride ?? classnames('adiago-toast-close', className);
 
   return <RadixToast.Close className={classNames} {...props} />;
 };

@@ -1,0 +1,23 @@
+.adiago-toast-root {
+  display: grid;
+  grid-template-areas: 'title action' 'description action';
+  grid-template-columns: auto max-content;
+  column-gap: 1rem;
+  align-items: center;
+}
+
+.adiago-toast-title {
+  grid-area: title;
+}
+
+.adiago-toast-description {
+  grid-area: description;
+}
+
+.adiago-toast-action {
+  grid-area: action;
+}
+
+.adiago-toast-action button {
+  width: 100%;
+}
