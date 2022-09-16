@@ -8,6 +8,8 @@ import {
   ToastClose
 } from './toast';
 
+import { useToast, ToastStateContext } from './toast-state';
+
 const Toast = {
   Provider: ToastProvider,
   Viewport: ToastViewport,
@@ -15,7 +17,10 @@ const Toast = {
   Title: ToastTitle,
   Description: ToastDescription,
   Action: ToastAction,
-  Close: ToastClose
+  Close: ToastClose,
+  // State
+  useToast,
+  StateContext: ToastStateContext
 };
 
 export default Toast;

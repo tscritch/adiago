@@ -4,6 +4,7 @@ import React from 'react';
 import classnames from 'classnames';
 import * as RadixToast from '@radix-ui/react-toast';
 import {
+  ToastProviderProps as RadixToastProviderProps,
   ToastViewportProps as RadixToastViewportProps,
   ToastProps as RadixToastRootProps,
   ToastTitleProps as RadixToastTitleProps,
@@ -12,8 +13,73 @@ import {
   ToastCloseProps as RadixToastCloseProps
 } from '@radix-ui/react-toast';
 import './toast.css';
+import { IToastType, ToastStateContext, useToastState } from './toast-state';
+import { Button } from '../button';
 
-export const ToastProvider = RadixToast.Provider;
+export type ToastProviderProps = RadixToastProviderProps;
+
+export const ToastProvider: React.FC<ToastProviderProps> = ({ children, ...props }) => {
+  const { toasts, toggleToast, createToast } = useToastState();
+  console.log({ toasts });
+
+  const wrappedChildren = React.useMemo(
+    () => <ToastStateContext.Provider value={{ createToast }}>{children}</ToastStateContext.Provider>,
+    []
+  );
+
+  const toastElements = React.useMemo(
+    () =>
+      toasts.map((toast, i) => {
+        return <Toast key={`adiago-toast-${i}`} {...toast} onOpenChange={(open) => toggleToast(i, open)} />;
+      }),
+    [toasts]
+  );
+
+  return (
+    <RadixToast.Provider {...props}>
+      {wrappedChildren}
+
+      {toastElements}
+
+      <ToastViewport />
+    </RadixToast.Provider>
+  );
+};
+
+ToastProvider.displayName = 'ToastProvider';
+
+export interface ToastProps {
+  title: string;
+  description: string;
+  type: IToastType;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+}
+export const Toast: React.FC<ToastProps> = ({ title, description, open, onOpenChange, action }) => {
+  return (
+    <ToastRoot open={open} onOpenChange={onOpenChange}>
+      <ToastTitle>{title}</ToastTitle>
+      <ToastDescription>{description}</ToastDescription>
+      {action ? (
+        <ToastAction altText={action.label}>
+          <Button
+            size="xs"
+            variant="flat"
+            onClick={() => {
+              action.onClick();
+              onOpenChange(open);
+            }}>
+            {action.label}
+          </Button>
+        </ToastAction>
+      ) : null}
+    </ToastRoot>
+  );
+};
 
 // Viewport
 export type ToastViewportProps = RadixToastViewportProps & {
