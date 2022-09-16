@@ -25,6 +25,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children, ...props
   const wrappedChildren = React.useMemo(
     () => <ToastStateContext.Provider value={{ createToast }}>{children}</ToastStateContext.Provider>,
     []
+    // [createToast]
   );
 
   const toastElements = React.useMemo(
@@ -59,6 +60,7 @@ export interface ToastProps {
     onClick: () => void;
   };
 }
+// @todo add type color variants maybe with an icon as well
 export const Toast: React.FC<ToastProps> = ({ title, description, open, onOpenChange, action }) => {
   return (
     <ToastRoot open={open} onOpenChange={onOpenChange}>
@@ -68,7 +70,7 @@ export const Toast: React.FC<ToastProps> = ({ title, description, open, onOpenCh
         <ToastAction altText={action.label}>
           <Button
             size="xs"
-            variant="flat"
+            variant="transparent"
             onClick={() => {
               action.onClick();
               onOpenChange(open);
@@ -108,7 +110,7 @@ export const ToastRoot: React.FC<ToastRootProps> = ({ className, classOverride, 
   const classNames =
     classOverride ??
     classnames(
-      'adiago-toast-root w-72 bg-white rounded shadow-lg p-2 border border-neutral-100 dark:bg-neutral-900',
+      'adiago-toast-root w-72 bg-white rounded shadow-lg p-2 border border-neutral-100 dark:bg-neutral-900 dark:border-neutral-700',
       animationClassNames,
       className
     );

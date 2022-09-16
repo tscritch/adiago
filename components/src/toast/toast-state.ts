@@ -18,18 +18,15 @@ export interface IToastState {
   toasts: IToast[];
 }
 
+// @robustness the toggling and removal of the toast is not stable
+// and should be improved
 export const useToastState = () => {
-  const [toasts, setToasts] = React.useState<IToast[]>([{ open: false, type: 'info', title: '', description: '' }]);
+  const [toasts, setToasts] = React.useState<IToast[]>([]);
 
   const toggleToast = (index: number, open: boolean) => {
     const toast = toasts[index];
     if (toast.open === open) return;
-
-    console.log('toggleToast', index, open);
-
     const newToast = { ...toasts[index], open: open };
-    console.log('toggleToast', toast);
-
     const newToasts = [...toasts];
     newToasts[index] = newToast;
     setToasts(newToasts);
@@ -38,14 +35,12 @@ export const useToastState = () => {
     if (!open) {
       setTimeout(() => {
         removeToast(index);
-      }, 1000);
+      }, 150);
     }
   };
 
   const createToast = React.useCallback(
     (toast: Omit<IToast, 'open'>) => {
-      console.log('createToast', toasts);
-
       const newToast = { ...toast, open: true };
       setToasts([...toasts, newToast]);
     },
