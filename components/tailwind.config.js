@@ -38,6 +38,25 @@ module.exports = {
         djent: '0 1px 2px rgb(31 48 37 / 0.2)',
         blue: '0 1px 2px rgb(59 131 246 / 0.4)',
         red: '0 1px 2px rgb(239 68 68 / 0.4)'
+      },
+      keyframes: {
+        hide: {
+          from: { opacity: 1 },
+          to: { opacity: 0 }
+        },
+        'slide-in': {
+          from: { transform: 'translateX(calc(100% + 1.5rem))' },
+          to: { transform: 'translateX(0)' }
+        },
+        'swipe-out': {
+          from: { transform: 'translateX(var(--radix-toast-swipe-end-x))' },
+          to: { transform: 'translateX(calc(100% + 1.5rem))' }
+        }
+      },
+      animation: {
+        hide: 'hide 0.2s ease-in-out',
+        'slide-in': 'slide-in 0.1s ease-out',
+        'swipe-out': 'swipe-out 0.1s ease-out'
       }
     }
   },
@@ -53,6 +72,22 @@ module.exports = {
     // radix state open attribute
     plugin(({ addVariant }) => {
       addVariant('rx-state-open', '&[data-state="open"]');
+    }),
+    // radix state closed attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-state-closed', '&[data-state="closed"]');
+    }),
+    // radix swipe move attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-swipe-move', '&[data-swipe="move"]');
+    }),
+    // radix swipe cancel attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-swipe-cancel', '&[data-swipe="cancel"]');
+    }),
+    // radix swipe end attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-swipe-end', '&[data-swipe="end"]');
     })
   ],
   corePlugins: {

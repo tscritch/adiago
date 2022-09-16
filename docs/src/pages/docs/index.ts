@@ -4,3 +4,4 @@ export { PageDocsDropdown } from './page-docs-dropdown';
 export { PageDocsInput } from './page-docs-input';
 export { PageDocsSelect } from './page-docs-select';
 export { PageDocsSidebar } from './page-docs-sidebar';
+export { PageDocsToast } from './page-docs-toast';
