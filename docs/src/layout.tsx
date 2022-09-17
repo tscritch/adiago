@@ -28,12 +28,7 @@ export const Layout: React.FC = () => {
           <Sidebar.Content className="p-2">
             {cList.map((name) => (
               <Link key={name} to={`/docs/${name}`}>
-                <div
-                  className={`px-2 py-1 mb-1 text-xs rounded ${
-                    pageName === name ? 'bg-djent-500 text-white' : 'hover:bg-neutral-200 dark:hover:bg-neutral-800'
-                  }`}>
-                  {name}
-                </div>
+                <Sidebar.ListItem active={name === pageName}>{name}</Sidebar.ListItem>
               </Link>
             ))}
           </Sidebar.Content>

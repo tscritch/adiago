@@ -106,11 +106,11 @@ const sizeClasses: Record<TButtonShapes, Record<TButtonSizes, string>> = {
 };
 const iconSizeClasses: Record<TButtonShapes, Partial<Record<TButtonSizes, string>>> = {
   rect: {
-    xs: 'w-6 h-6 p-0 text-xs',
-    sm: 'w-8 h-8 p-0 text-sm',
-    md: 'w-10 h-10 p-0 text-base',
-    lg: 'w-12 h-12 p-0 text-lg',
-    xl: 'w-14 h-14 p-0 text-xl font-bold'
+    xs: 'w-6 h-4 p-0 text-xs',
+    sm: 'w-6 h-6 p-0 text-sm',
+    md: 'w-8 h-8 p-0 text-base',
+    lg: 'w-10 h-10 p-0 text-lg',
+    xl: 'w-12 h-12 p-0 text-xl font-bold'
   },
   pill: {
     xs: 'w-8 h-6 text-xs',
