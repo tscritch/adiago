@@ -31,6 +31,13 @@ export const PageDocsSidebar = () => {
               Item 2
             </Sidebar.ListItem>
             <Sidebar.ListItem disabled={true}>Item 3</Sidebar.ListItem>
+            <Sidebar.Group label="Group">
+              <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+              <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+              <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+              <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+              <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+            </Sidebar.Group>
           </Sidebar.Content>
         </Sidebar.Root>
       </div>
