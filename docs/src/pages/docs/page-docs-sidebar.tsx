@@ -6,7 +6,16 @@ export const PageDocsSidebar = () => {
       <div className="p-4 h-full">
         <Sidebar.Root>
           <Sidebar.Content>
-            <Sidebar.ListItem active>Item 1</Sidebar.ListItem>
+            <Sidebar.ListItem
+              active
+              actions={[
+                {
+                  label: 'Action 1',
+                  onClick: () => console.log('Action 1')
+                }
+              ]}>
+              Item 1
+            </Sidebar.ListItem>
             <Sidebar.ListItem
               actions={[
                 {
