@@ -20,7 +20,6 @@ export type ToastProviderProps = RadixToastProviderProps;
 
 export const ToastProvider: React.FC<ToastProviderProps> = ({ children, ...props }) => {
   const { toasts, toggleToast, createToast } = useToastState();
-  console.log({ toasts });
 
   const wrappedChildren = React.useMemo(
     () => <ToastStateContext.Provider value={{ createToast }}>{children}</ToastStateContext.Provider>,

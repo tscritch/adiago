@@ -61,6 +61,7 @@
     "@radix-ui/react-dropdown-menu": "^1.0.0",
     "@radix-ui/react-scroll-area": "^1.0.0",
     "@radix-ui/react-select": "^1.0.0",
-    "@radix-ui/react-toast": "^1.0.0"
+    "@radix-ui/react-toast": "^1.0.0",
+    "@radix-ui/react-tooltip": "^1.0.0"
   }
 }
