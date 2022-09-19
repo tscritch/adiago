@@ -38,6 +38,26 @@ export const PageDocsSidebar = () => {
               <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
               <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
             </Sidebar.Group>
+            <Sidebar.Group label="Disabled Group" disabled={true}>
+              <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+            </Sidebar.Group>
+            <Sidebar.Group
+              label="Group with actions"
+              actions={[
+                {
+                  label: 'Action 1',
+                  onClick: () => console.log('Action 1')
+                }
+              ]}>
+              <Sidebar.ListItem>Item in a group with a super long name oh Im so cool</Sidebar.ListItem>
+              <Sidebar.Group label="Sub group">
+                <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+                <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+                <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+                <Sidebar.ListItem>Item in a group</Sidebar.ListItem>
+              </Sidebar.Group>
+              <Sidebar.Group label="No children"></Sidebar.Group>
+            </Sidebar.Group>
           </Sidebar.Content>
         </Sidebar.Root>
       </div>

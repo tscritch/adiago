@@ -51,12 +51,22 @@ module.exports = {
         'swipe-out': {
           from: { transform: 'translateX(var(--radix-toast-swipe-end-x))' },
           to: { transform: 'translateX(calc(100% + 1.5rem))' }
+        },
+        'rx-collapsible-height-open': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-collapsible-content-height)' }
+        },
+        'rx-collapsible-height-close': {
+          from: { height: 'var(--radix-collapsible-content-height)' },
+          to: { height: '0' }
         }
       },
       animation: {
         hide: 'hide 0.2s ease-in-out',
         'slide-in': 'slide-in 0.1s ease-out',
-        'swipe-out': 'swipe-out 0.1s ease-out'
+        'swipe-out': 'swipe-out 0.1s ease-out',
+        'rx-collapsible-height-open': 'rx-collapsible-height-open 0.1s ease-out',
+        'rx-collapsible-height-close': 'rx-collapsible-height-close 0.1s ease-out'
       }
     }
   },

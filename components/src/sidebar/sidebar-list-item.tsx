@@ -22,7 +22,13 @@ const baseClasses =
 const activeClasses = 'bg-djent-500 text-white hover:bg-djent-600 dark:hover:bg-djent-600';
 const disabledClasses = 'pointer-events-none text-neutral-500 dark:text-neutral-700 hover:bg-transparent';
 
-export const SidebarListItem: React.FC<SidebarListItemProps> = ({ children, active, actions, disabled }) => {
+export const SidebarListItem: React.FC<SidebarListItemProps> = ({
+  children,
+  active,
+  actions,
+  actionIcon,
+  disabled
+}) => {
   const classNames = classnames(baseClasses, { [activeClasses]: active, [disabledClasses]: disabled });
 
   const actionDropdownItems = React.useMemo(() => {
@@ -41,7 +47,7 @@ export const SidebarListItem: React.FC<SidebarListItemProps> = ({ children, acti
       <Dropdown.Root>
         <Dropdown.Trigger asChild>
           <button className="invisible group-hover:visible rx-state-open:visible">
-            <EllipsisHorizontalIcon className="h-4 w-6" />
+            {actionIcon || <EllipsisHorizontalIcon className="h-4 w-6" />}
           </button>
         </Dropdown.Trigger>
 

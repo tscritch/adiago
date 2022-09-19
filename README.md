@@ -46,7 +46,8 @@ See [Adiago Development](/components/development.md)
 - [ ] Sidebar
   - [x] List items
   - [x] List Item Action Menu
-  - [ ] Collapsible items
+  - [x] Collapsible items
+  - [ ] Re-arrangeable items
 - [ ] Switch
 - [x] Toast
 - [ ] Toggle Group
