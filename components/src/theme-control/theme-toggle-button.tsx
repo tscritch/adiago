@@ -1,4 +1,5 @@
 import React from 'react';
+import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { Button } from '../button';
 import { getTheme, setTheme } from '../_utils/root/functions';
 
@@ -17,8 +18,8 @@ export const ThemeToggleButton = () => {
   };
 
   return (
-    <Button color="opaque" onClick={onClick}>
-      {theme}
+    <Button size="xs" color="opaque" variant="transparent" onClick={onClick}>
+      {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
     </Button>
   );
 };

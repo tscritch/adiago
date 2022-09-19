@@ -17,7 +17,7 @@ const variantClasses: Record<TInputVariants, string> = {
   invisible: 'bg-transparent outline-none focus:bg-neutral-900/5 dark:focus:bg-neutral-50/5'
 };
 
-export const Input: React.FC<InputProps> = ({ icon, label, variant = 'standard', ...props }) => {
+export const Input: React.FC<InputProps> = ({ /*icon,*/ label, variant = 'standard', ...props }) => {
   const classNames = classnames(baseClasses, variantClasses[variant]);
 
   return (

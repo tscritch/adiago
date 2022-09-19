@@ -46,7 +46,7 @@ export const SelectTrigger: React.FC<SelectTriggerProps> = ({
     );
 
   const iconClassNames =
-    classOverride ?? classnames('adiago-select-icon w-4 text-neutral-800 dark:text-white', className);
+    iconClassNameOverride ?? classnames('adiago-select-icon w-4 text-neutral-800 dark:text-white', className);
 
   return (
     <RadixSelect.Trigger {...props} className={classNames}>
@@ -139,7 +139,7 @@ export interface SelectSeparatorProps extends RadixSelectSeparatorProps {
   iconOverride?: React.ReactNode;
 }
 export const SelectSeparator = React.forwardRef<React.ElementRef<typeof RadixSelect.Label>, SelectSeparatorProps>(
-  ({ className, classOverride, asChild, ...props }, forwardedRef) => {
+  ({ className, classOverride, ...props }, forwardedRef) => {
     const classNames =
       classOverride ?? classnames('adiago-select-separator h-[1px] m-1 bg-neutral-300 dark:bg-neutral-600', className);
 

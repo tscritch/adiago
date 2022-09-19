@@ -45,8 +45,10 @@ See [Adiago Development](/components/development.md)
   - [ ] Scroll Buttons
 - [ ] Sidebar
   - [x] List items
-  - [ ] Collapsible items
+  - [x] List Item Action Menu
+  - [x] Collapsible items
+  - [ ] Re-arrangeable items
 - [ ] Switch
-- [ ] Toast
+- [x] Toast
 - [ ] Toggle Group
 - [ ] Tooltip

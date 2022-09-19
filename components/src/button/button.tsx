@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import './button.css';
 
 type ReducedHTMLButtonElement = Omit<React.HTMLProps<HTMLButtonElement>, 'size'>;
 
@@ -9,7 +10,7 @@ export type TButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type TButtonVariants = 'standard' | 'outline' | 'flat' | 'transparent';
 
 export interface ButtonProps extends ReducedHTMLButtonElement {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   /**
    * Color: primary, secondary, error, white
    */
@@ -27,9 +28,14 @@ export interface ButtonProps extends ReducedHTMLButtonElement {
    * Variant: standard, outline, flat, transparent
    */
   variant?: TButtonVariants;
+  /**
+   * Icon: if provided will ignore children and adjust button sizes
+   */
+  icon?: React.ReactNode;
 }
 
-const baseClasses = 'adiago-button font-semibold transition-all duration-75 focus-visible:outline-leaf-500';
+const baseClasses =
+  'adiago-button font-semibold transition-all duration-75 focus-visible:outline-leaf-500 flex items-center justify-center space-x-2';
 const colorClasses: Record<TButtonVariants, Record<TButtonColors, string>> = {
   standard: {
     primary: 'bg-leaf-500 text-white drop-shadow-leaf hover:bg-leaf-600 dark:bg-leaf-600 dark:hover:bg-leaf-700',
@@ -98,19 +104,41 @@ const sizeClasses: Record<TButtonShapes, Record<TButtonSizes, string>> = {
     xl: 'w-14 h-14 text-xl font-bold'
   }
 };
+const iconSizeClasses: Record<TButtonShapes, Partial<Record<TButtonSizes, string>>> = {
+  rect: {
+    xs: 'w-6 h-4 p-0 text-xs',
+    sm: 'w-6 h-6 p-0 text-sm',
+    md: 'w-8 h-8 p-0 text-base',
+    lg: 'w-10 h-10 p-0 text-lg',
+    xl: 'w-12 h-12 p-0 text-xl font-bold'
+  },
+  pill: {
+    xs: 'w-8 h-6 text-xs',
+    sm: 'w-10 h-8 text-sm',
+    md: 'w-12 h-10 text-base',
+    lg: 'w-14 h-12 text-lg',
+    xl: 'w-16 h-14 text-xl font-bold'
+  },
+  circle: {}
+};
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'standard', color = 'primary', size = 'md', shape = 'rect', children, ...props }, ref) => {
+  (
+    { variant = 'standard', color = 'primary', size = 'md', shape = 'rect', icon, children, className, ...props },
+    ref
+  ) => {
     const classNames = classnames(
       baseClasses,
       colorClasses[variant][color],
       shapeClasses[shape],
-      sizeClasses[shape][size]
+      sizeClasses[shape][size],
+      icon && iconSizeClasses[shape][size],
+      className
     );
 
     return (
       <button className={classNames} ref={ref} {...props}>
-        {children}
+        {icon || children}
       </button>
     );
   }
