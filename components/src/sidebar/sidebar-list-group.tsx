@@ -9,11 +9,6 @@ export interface SidebarListGroupProps extends SidebarListItemProps {
   label?: React.ReactNode;
 }
 
-// const baseClasses =
-//   'adiago-sidebar-list-group group flex items-center justify-between pl-2 pr-1 py-1 mb-1 text-xs rounded text-neutral-900 cursor-pointer hover:bg-djent-100 dark:text-white dark:hover:bg-neutral-800';
-// const activeClasses = 'bg-djent-500 text-white hover:bg-djent-600 dark:hover:bg-djent-600';
-// const disabledClasses = 'pointer-events-none text-neutral-500 dark:text-neutral-700 hover:bg-transparent';
-
 export const SidebarListGroup: React.FC<SidebarListGroupProps> = ({
   children,
   label,
@@ -42,4 +37,4 @@ export const SidebarListGroup: React.FC<SidebarListGroupProps> = ({
   );
 };
 
-SidebarListItem.displayName = 'SidebarListItem';
+SidebarListGroup.displayName = 'SidebarListGroup';
