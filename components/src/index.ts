@@ -4,6 +4,7 @@ import './_utils/styles.css';
 export { AdiagoRoot } from './_utils/root/root';
 export { default as AlertDialog } from './alert-dialog';
 export { Button } from './button';
+export { Checkbox } from './checkbox';
 export { default as Dropdown } from './dropdown';
 export { Input } from './input';
 export { default as ScrollArea } from './scroll-area';
