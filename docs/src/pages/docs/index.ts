@@ -5,3 +5,4 @@ export { PageDocsInput } from './page-docs-input';
 export { PageDocsSelect } from './page-docs-select';
 export { PageDocsSidebar } from './page-docs-sidebar';
 export { PageDocsToast } from './page-docs-toast';
+export { PageDocsTooltip } from './page-docs-tooltip';
