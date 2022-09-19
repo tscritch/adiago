@@ -51,4 +51,4 @@ See [Adiago Development](/components/development.md)
 - [ ] Switch
 - [x] Toast
 - [ ] Toggle Group
-- [ ] Tooltip
+- [x] Tooltip
