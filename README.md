@@ -49,7 +49,7 @@ See [Adiago Development](/components/development.md)
   - [x] List Item Action Menu
   - [x] Collapsible items
   - [ ] Re-arrangeable items
-- [ ] Switch
+- [x] Switch
 - [x] Toast
 - [ ] Toggle Group
 - [x] Tooltip

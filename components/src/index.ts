@@ -12,6 +12,7 @@ export { Progress } from './progress';
 export { default as ScrollArea } from './scroll-area';
 export { default as Select } from './select';
 export { default as Sidebar } from './sidebar';
+export { Switch } from './switch';
 export { ThemeToggleButton } from './theme-control/theme-toggle-button';
 export { default as Toast } from './toast';
 export { default as Tooltip } from './tooltip';

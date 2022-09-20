@@ -98,6 +98,14 @@ module.exports = {
     // radix swipe end attribute
     plugin(({ addVariant }) => {
       addVariant('rx-swipe-end', '&[data-swipe="end"]');
+    }),
+    // radix state checked attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-state-checked', '&[data-state="checked"]');
+    }),
+    // radix state unchecked attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-state-unchecked', '&[data-state="unchecked"]');
     })
   ],
   corePlugins: {

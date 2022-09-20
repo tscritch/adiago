@@ -6,5 +6,6 @@ export { PageDocsInput } from './page-docs-input';
 export { PageDocsProgress } from './page-docs-progress';
 export { PageDocsSelect } from './page-docs-select';
 export { PageDocsSidebar } from './page-docs-sidebar';
+export { PageDocsSwitch } from './page-docs-switch';
 export { PageDocsToast } from './page-docs-toast';
 export { PageDocsTooltip } from './page-docs-tooltip';
