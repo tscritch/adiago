@@ -3,6 +3,7 @@ export { PageDocsButton } from './page-docs-button';
 export { PageDocsCheckbox } from './page-docs-checkbox';
 export { PageDocsDropdown } from './page-docs-dropdown';
 export { PageDocsInput } from './page-docs-input';
+export { PageDocsProgress } from './page-docs-progress';
 export { PageDocsSelect } from './page-docs-select';
 export { PageDocsSidebar } from './page-docs-sidebar';
 export { PageDocsToast } from './page-docs-toast';
