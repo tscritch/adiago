@@ -41,7 +41,7 @@ See [Adiago Development](/components/development.md)
   - [ ] Dropdown item color options
 - [x] Input
 - [x] Label
-- [ ] Progress
+- [x] Progress
 - [x] Select
   - [ ] Scroll Buttons
 - [ ] Sidebar
