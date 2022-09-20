@@ -7,6 +7,7 @@ export { Button } from './button';
 export { Checkbox } from './checkbox';
 export { default as Dropdown } from './dropdown';
 export { Input } from './input';
+export { Label } from './label';
 export { default as ScrollArea } from './scroll-area';
 export { default as Select } from './select';
 export { default as Sidebar } from './sidebar';
