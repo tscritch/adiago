@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { Label } from '../label';
 
 export type TInputVariants = 'standard' | 'invisible';
 
@@ -24,9 +25,9 @@ export const Input: React.FC<InputProps> = ({ /*icon,*/ label, variant = 'standa
     <div className="adiago-input-container pb-2 relative">
       {/* @todo make own component and use radix ui label: https://www.radix-ui.com/docs/primitives/components/label */}
       {label && (
-        <label className="adiago-input-label text-xs block pb-1 font-semibold" htmlFor={props.name}>
+        <Label htmlFor={props.id} className="pb-1 block text-xs">
           {label}
-        </label>
+        </Label>
       )}
       <input type="text" className={classNames} {...props} />
     </div>

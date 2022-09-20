@@ -36,10 +36,11 @@ See [Adiago Development](/components/development.md)
 
 - [x] Alert Dialog
 - [x] Button
-- [ ] Checkbox
+- [x] Checkbox
 - [x] Dropdown
   - [ ] Dropdown item color options
 - [x] Input
+- [x] Label
 - [ ] Progress
 - [x] Select
   - [ ] Scroll Buttons
