@@ -1,4 +1,4 @@
-import { Checkbox, Label } from '@adiago/components';
+import { Checkbox } from '@adiago/components';
 
 export const PageDocsCheckbox = () => {
   return (
