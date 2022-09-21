@@ -35,6 +35,8 @@ See [Adiago Development](/components/development.md)
 ## Progress
 
 - [x] Alert Dialog
+- [ ] Audio Player
+- [ ] Audio Recorder
 - [x] Button
 - [x] Checkbox
 - [x] Dropdown
@@ -51,5 +53,5 @@ See [Adiago Development](/components/development.md)
   - [ ] Re-arrangeable items
 - [x] Switch
 - [x] Toast
-- [ ] Toggle Group
+- [x] Toggle Group
 - [x] Tooltip
