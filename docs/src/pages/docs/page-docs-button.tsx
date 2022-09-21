@@ -6,6 +6,7 @@ export const PageDocsButton = () => {
     <div>
       <div className="p-4">
         <Button>Default</Button>
+        <Button loading>Loading</Button>
       </div>
       <div className="p-2">
         <div className="p-2 flex space-x-4 items-center">

@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import './button.css';
+import { Loader } from '../loader';
 
 type ReducedHTMLButtonElement = Omit<React.HTMLProps<HTMLButtonElement>, 'size'>;
 
@@ -32,6 +33,7 @@ export interface ButtonProps extends ReducedHTMLButtonElement {
    * Icon: if provided will ignore children and adjust button sizes
    */
   icon?: React.ReactNode;
+  loading?: boolean;
 }
 
 const baseClasses =
@@ -124,7 +126,17 @@ const iconSizeClasses: Record<TButtonShapes, Partial<Record<TButtonSizes, string
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant = 'standard', color = 'primary', size = 'md', shape = 'rect', icon, children, className, ...props },
+    {
+      variant = 'standard',
+      color = 'primary',
+      size = 'md',
+      shape = 'rect',
+      icon,
+      loading,
+      children,
+      className,
+      ...props
+    },
     ref
   ) => {
     const classNames = classnames(
@@ -138,7 +150,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button className={classNames} ref={ref} {...props}>
-        {icon || children}
+        {loading ? <Loader className="fill-white" /> : icon || children}
       </button>
     );
   }
