@@ -15,4 +15,5 @@ export { default as Sidebar } from './sidebar';
 export { Switch } from './switch';
 export { ThemeToggleButton } from './theme-control/theme-toggle-button';
 export { default as Toast } from './toast';
+export { default as ToggleGroup } from './toggle-group';
 export { default as Tooltip } from './tooltip';

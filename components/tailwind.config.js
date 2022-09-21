@@ -106,6 +106,10 @@ module.exports = {
     // radix state unchecked attribute
     plugin(({ addVariant }) => {
       addVariant('rx-state-unchecked', '&[data-state="unchecked"]');
+    }),
+    // radix state on attribute
+    plugin(({ addVariant }) => {
+      addVariant('rx-state-on', '&[data-state="on"]');
     })
   ],
   corePlugins: {

@@ -8,4 +8,5 @@ export { PageDocsSelect } from './page-docs-select';
 export { PageDocsSidebar } from './page-docs-sidebar';
 export { PageDocsSwitch } from './page-docs-switch';
 export { PageDocsToast } from './page-docs-toast';
+export { PageDocsToggleGroup } from './page-docs-toggle-group';
 export { PageDocsTooltip } from './page-docs-tooltip';
