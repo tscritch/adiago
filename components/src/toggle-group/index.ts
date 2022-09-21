@@ -1,7 +1,8 @@
-import { ToggleGroupRoot } from './toggle-group';
+import { ToggleGroupRoot, ToggleGroupItem } from './toggle-group';
 
 const ToggleGroup = {
-  Root: ToggleGroupRoot
+  Root: ToggleGroupRoot,
+  Item: ToggleGroupItem
 };
 
 export default ToggleGroup;

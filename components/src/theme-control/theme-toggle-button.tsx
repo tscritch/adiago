@@ -1,25 +1,33 @@
 import React from 'react';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { Button } from '../button';
-import { getTheme, setTheme } from '../_utils/root/functions';
+import { SunIcon, MoonIcon, ComputerDesktopIcon } from '@heroicons/react/24/solid';
+import ToggleGroup from '../toggle-group';
+import { getTheme, setTheme, ThemeType } from '../_utils/root/functions';
+
+const textClassnames = 'pt-[2px] pl-1';
+const iconClassnames = 'w-3 h-3';
 
 export const ThemeToggleButton = () => {
   const [theme, setStateTheme] = React.useState(getTheme());
 
-  const onClick = () => {
-    const rtheme = getTheme();
-    if (rtheme === 'os' || rtheme === 'dark') {
-      setStateTheme('light');
-      setTheme('light');
-    } else {
-      setStateTheme('dark');
-      setTheme('dark');
-    }
+  const onThemeChange = (value: ThemeType) => {
+    setStateTheme(value);
+    setTheme(value);
   };
 
   return (
-    <Button size="xs" color="opaque" variant="transparent" onClick={onClick}>
-      {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
-    </Button>
+    <ToggleGroup.Root value={theme} onValueChange={onThemeChange}>
+      <ToggleGroup.Item value="light">
+        <SunIcon className={iconClassnames} />
+        <p className={textClassnames}>Light</p>
+      </ToggleGroup.Item>
+      <ToggleGroup.Item value="dark">
+        <MoonIcon className={iconClassnames} />
+        <p className={textClassnames}>Dark</p>
+      </ToggleGroup.Item>
+      <ToggleGroup.Item value="os">
+        <ComputerDesktopIcon className={iconClassnames} />
+        <p className={textClassnames}>OS</p>
+      </ToggleGroup.Item>
+    </ToggleGroup.Root>
   );
 };

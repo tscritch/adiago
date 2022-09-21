@@ -1,36 +1,33 @@
 import React from 'react';
 import classnames from 'classnames';
-import * as RadixSwitch from '@radix-ui/react-switch';
-import { SwitchProps as RadixSwitchProps } from '@radix-ui/react-switch';
-import { Label } from '../label';
+import * as RadixToggleGroup from '@radix-ui/react-toggle-group';
+import {
+  ToggleGroupSingleProps as RadixToggleGroupProps,
+  ToggleGroupItemProps as RadixToggleGroupItemProps
+} from '@radix-ui/react-toggle-group';
 
-export type SwitchProps = RadixSwitchProps & {
-  label?: string;
-};
+export type ToggleGroupProps = Omit<RadixToggleGroupProps, 'type'>;
 
 const rootClassnames = classnames(
-  'adiago-switch',
-  'overflow-hidden h-6 w-10 rounded-full bg-neutral-200 transition-all shadow-inner border-2 border-transparent rx-state-checked:bg-leaf-500 focus:outline-none focus:border-leaf-500 dark:rx-state-checked:bg-leaf-500 dark:bg-neutral-700 dark:border-neutral-700'
+  'adiago-toggle-group',
+  'inline-flex bg-neutral-100 shadow-inner rounded p-[2px] space-x-[2px] dark:bg-neutral-700'
 );
 
-const thumbClassnames = classnames(
-  'adiago-switch-thumb',
-  'block bg-white rounded-full h-4 w-4 shadow translate-x-[2px] transition-transform duration-200 ease-in-out rx-state-checked:translate-x-[18px]'
+export const ToggleGroupRoot: React.FC<ToggleGroupProps> = (props) => {
+  return <RadixToggleGroup.Root {...props} type="single" className={rootClassnames} />;
+};
+
+ToggleGroupRoot.displayName = 'ToggleGroupRoot';
+
+export type ToggleGroupItemProps = RadixToggleGroupItemProps;
+
+const itemClassnames = classnames(
+  'adiago-toggle-group-item',
+  'px-2 py-1 flex items-center justify-center rounded text-xs text-neutral-900 bg-neutral-100 focus:outline focus:outline-leaf-500 rx-state-on:bg-white rx-state-on:shadow hover:bg-neutral-200 dark:focus:outline-leaf-600 dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:rx-state-on:bg-neutral-900'
 );
 
-export const ToggleGroupRoot: React.FC<SwitchProps> = ({ label, ...props }) => {
-  return (
-    <div className="flex items-center py-1">
-      <RadixSwitch.Root {...props} className={rootClassnames}>
-        <RadixSwitch.Thumb className={thumbClassnames} />
-      </RadixSwitch.Root>
-      {label && (
-        <Label className="pl-2 pt-1" htmlFor={props.id}>
-          {label}
-        </Label>
-      )}
-    </div>
-  );
+export const ToggleGroupItem: React.FC<ToggleGroupItemProps> = (props) => {
+  return <RadixToggleGroup.Item {...props} className={itemClassnames} />;
 };
 
 ToggleGroupRoot.displayName = 'ToggleGroupRoot';
