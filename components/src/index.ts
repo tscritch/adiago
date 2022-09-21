@@ -8,6 +8,7 @@ export { Checkbox } from './checkbox';
 export { default as Dropdown } from './dropdown';
 export { Input } from './input';
 export { Label } from './label';
+export { Loader } from './loader';
 export { Progress } from './progress';
 export { default as ScrollArea } from './scroll-area';
 export { default as Select } from './select';
