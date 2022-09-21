@@ -28,6 +28,15 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
 Adiago relies on `react`, `react-dom`, `classnames`, and `@heroicons/react` as peer dependencies.
 
+```json
+"peerDependencies": {
+  "@heroicons/react": "^2.0.10",
+  "classnames": "^2.0",
+  "react": "^16.8 || ^17.0 || ^18.0",
+  "react-dom": "^16.8 || ^17.0 || ^18.0"
+}
+```
+
 ## Development
 
 See [Adiago Development](/components/development.md)
@@ -38,6 +47,7 @@ See [Adiago Development](/components/development.md)
 - [ ] Audio Player
 - [ ] Audio Recorder
 - [x] Button
+- [ ] Card
 - [x] Checkbox
 - [x] Dropdown
   - [ ] Dropdown item color options
