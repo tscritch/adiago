@@ -39,7 +39,12 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
   actions
 }) => {
   const classNames =
-    classOverride ?? classnames('adiago-card-header', 'flex items-center p-3 border-b border-neutral-200', className);
+    classOverride ??
+    classnames(
+      'adiago-card-header',
+      'flex items-center p-3 border-b border-neutral-200 dark:border-neutral-800',
+      className
+    );
 
   return (
     <div className={classNames}>
@@ -60,7 +65,8 @@ export interface CardTitleProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const CardTitle: React.FC<CardTitleProps> = ({ children, className, classOverride }) => {
   const classNames =
-    classOverride ?? classnames('adiago-card-title', 'text-md font-semibold text-neutral-900', className);
+    classOverride ??
+    classnames('adiago-card-title', 'text-md font-semibold text-neutral-900 dark:text-white', className);
 
   return <h1 className={classNames}>{children}</h1>;
 };
@@ -75,7 +81,8 @@ export interface CardSubtitleProps extends React.HTMLAttributes<HTMLDivElement> 
 
 export const CardSubtitle: React.FC<CardSubtitleProps> = ({ children, className, classOverride }) => {
   const classNames =
-    classOverride ?? classnames('adiago-card-subtitle', 'text-sm font-normal text-neutral-600', className);
+    classOverride ??
+    classnames('adiago-card-subtitle', 'text-sm font-normal text-neutral-600 dark:text-neutral-300', className);
 
   return <h1 className={classNames}>{children}</h1>;
 };
@@ -121,7 +128,7 @@ export const CardFooter: React.FC<CardFooterProps> = ({ children, className, cla
     classOverride ??
     classnames(
       'adiago-card-footer',
-      'flex p-2 w-full border-t border-neutral-200 min-h-[2rem] items-center',
+      'flex p-2 w-full border-t border-neutral-200 min-h-[2rem] items-center dark:border-neutral-800',
       className
     );
 
