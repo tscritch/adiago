@@ -3,21 +3,26 @@ import { Card, Button } from '@adiago/components';
 export const PageDocsCard = () => {
   return (
     <div>
-      <div className="p-4">
+      <div className="p-4 space-y-4">
         <Card.Root />
-        {/* <Card.Root>
-          <Card.Header>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Subtitle>Card Subtitle</Card.Subtitle>
-            <Card.Actions />
-          </Card.Header>
+
+        <Card.Root>
           <Card.Body>
             <p>Some content</p>
           </Card.Body>
-          <Card.Footer>
-            <Button>Cool!</Button>
+        </Card.Root>
+
+        <Card.Root>
+          <Card.Header title="Card Title" subtitle="Card Subtitle" />
+          <Card.Body>
+            <p>Some content</p>
+          </Card.Body>
+          <Card.Footer className="justify-end">
+            <Button size="sm" variant="flat">
+              Cool!
+            </Button>
           </Card.Footer>
-        </Card.Root> */}
+        </Card.Root>
       </div>
     </div>
   );
