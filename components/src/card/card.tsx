@@ -1,5 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
+import { EllipsisVerticalIcon } from '@heroicons/react/24/solid';
+
+import { DropdownItem } from '../dropdown/dropdown-composed';
+import Dropdown from '../dropdown';
+import { Button } from '../button';
 
 export interface CardRootProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
@@ -22,22 +27,14 @@ export const CardRoot: React.FC<CardRootProps> = ({ classOverride, className, ..
 CardRoot.displayName = 'CardRoot';
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
   className?: string;
   classOverride?: string;
   title?: string;
   subtitle?: string;
-  actions?: any[];
+  actions?: DropdownItem[];
 }
 
-export const CardHeader: React.FC<CardHeaderProps> = ({
-  children,
-  className,
-  classOverride,
-  title,
-  subtitle,
-  actions
-}) => {
+export const CardHeader: React.FC<CardHeaderProps> = ({ className, classOverride, title, subtitle, actions }) => {
   const classNames =
     classOverride ??
     classnames(
@@ -50,7 +47,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
     <div className={classNames}>
       {title ? <CardTitle className="">{title}</CardTitle> : null}
       {subtitle ? <CardSubtitle className="pt-[2px] px-2 flex-grow">{subtitle}</CardSubtitle> : null}
-      {actions ? <CardActions>{actions}</CardActions> : <div className="flex-grow" />}
+      {actions ? <CardActions actions={actions} /> : <div className="flex-grow" />}
     </div>
   );
 };
@@ -90,15 +87,31 @@ export const CardSubtitle: React.FC<CardSubtitleProps> = ({ children, className,
 CardSubtitle.displayName = 'CardSubtitle';
 
 export interface CardActionsProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode;
   className?: string;
   classOverride?: string;
+  actions: DropdownItem[];
 }
 
-export const CardActions: React.FC<CardActionsProps> = ({ children, className, classOverride }) => {
+export const CardActions: React.FC<CardActionsProps> = ({ className, classOverride, actions }) => {
   const classNames = classOverride ?? classnames('adiago-card-actions', 'flex', className);
 
-  return <div className={classNames}>{children}</div>;
+  const actionTrigger = React.useMemo(() => {
+    return (
+      <Button
+        variant="transparent"
+        size="sm"
+        color="opaque"
+        className="flex items-center"
+        icon={<EllipsisVerticalIcon />}
+      />
+    );
+  }, []);
+
+  return (
+    <div className={classNames}>
+      <Dropdown.Composed items={actions} trigger={actionTrigger} align="end" />
+    </div>
+  );
 };
 
 CardActions.displayName = 'CardActions';

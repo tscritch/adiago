@@ -13,7 +13,17 @@ export const PageDocsCard = () => {
         </Card.Root>
 
         <Card.Root>
-          <Card.Header title="Card Title" subtitle="Card Subtitle" />
+          <Card.Header
+            title="Card Title"
+            subtitle="Card Subtitle"
+            actions={[
+              {
+                type: 'basic',
+                label: 'Action',
+                onClick: () => {}
+              }
+            ]}
+          />
           <Card.Body>
             <p>Some content</p>
           </Card.Body>
