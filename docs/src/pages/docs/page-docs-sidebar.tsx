@@ -10,6 +10,7 @@ export const PageDocsSidebar = () => {
               active
               actions={[
                 {
+                  type: 'basic',
                   label: 'Action 1',
                   onClick: () => console.log('Action 1')
                 }
@@ -19,10 +20,12 @@ export const PageDocsSidebar = () => {
             <Sidebar.ListItem
               actions={[
                 {
+                  type: 'basic',
                   label: 'Action 1',
                   onClick: () => console.log('Action 1')
                 },
                 {
+                  type: 'basic',
                   label: 'Action 2',
                   disabled: true,
                   onClick: () => console.log('Action 2')
@@ -45,6 +48,7 @@ export const PageDocsSidebar = () => {
               label="Group with actions"
               actions={[
                 {
+                  type: 'basic',
                   label: 'Action 1',
                   onClick: () => console.log('Action 1')
                 }

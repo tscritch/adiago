@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/solid';
 import Dropdown from '../dropdown';
+import { DropdownItem } from 'src/dropdown/dropdown-composed';
 
 export interface SidebarListItemAction {
   label: string;
@@ -12,7 +13,7 @@ export interface SidebarListItemAction {
 export interface SidebarListItemProps {
   children?: React.ReactNode;
   active?: boolean;
-  actions?: SidebarListItemAction[];
+  actions?: DropdownItem[];
   actionIcon?: React.ReactNode;
   disabled?: boolean;
 }
@@ -31,39 +32,21 @@ export const SidebarListItem: React.FC<SidebarListItemProps> = ({
 }) => {
   const classNames = classnames(baseClasses, { [activeClasses]: active, [disabledClasses]: disabled });
 
-  const actionDropdownItems = React.useMemo(() => {
-    return actions?.map((action, i) => (
-      <Dropdown.Item
-        key={`adiago-sidebar-list-item-action-${action.label}-${i}`}
-        onClick={action.onClick}
-        disabled={action.disabled}>
-        {action.label}
-      </Dropdown.Item>
-    ));
-  }, [actions]);
-
-  const actionsDropdown = React.useMemo(
-    () => (
-      <Dropdown.Root>
-        <Dropdown.Trigger asChild>
-          <button className="invisible group-hover:visible rx-state-open:visible">
-            {actionIcon || <EllipsisHorizontalIcon className="h-4 w-6" />}
-          </button>
-        </Dropdown.Trigger>
-
-        <Dropdown.Content align="start" sideOffset={4}>
-          {actionDropdownItems}
-        </Dropdown.Content>
-      </Dropdown.Root>
-    ),
-    []
-  );
-
   return (
     <div className={classNames}>
       {children}
 
-      {!disabled && actions ? actionsDropdown : null}
+      {!disabled && actions ? (
+        <Dropdown.Composed
+          items={actions}
+          trigger={
+            <button className="invisible group-hover:visible rx-state-open:visible">
+              {actionIcon || <EllipsisHorizontalIcon className="h-4 w-6" />}
+            </button>
+          }
+          align="end"
+        />
+      ) : null}
     </div>
   );
 };
