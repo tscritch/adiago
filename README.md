@@ -47,7 +47,7 @@ See [Adiago Development](/components/development.md)
 - [ ] Audio Player
 - [ ] Audio Recorder
 - [x] Button
-- [ ] Card
+- [x] Card
 - [x] Checkbox
 - [x] Dropdown
   - [ ] Dropdown item color options
