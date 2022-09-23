@@ -1,4 +1,4 @@
-import { Button, Sidebar, Tooltip } from '@adiago/components';
+import { Button, Tooltip } from '@adiago/components';
 
 export const PageDocsTooltip = () => {
   return (

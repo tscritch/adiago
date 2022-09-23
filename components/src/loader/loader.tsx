@@ -17,7 +17,7 @@ const sizeClassnames: Record<TLoaderSize, string> = {
   xl: 'w-8 h-8'
 };
 
-export const Loader: React.FC<LoaderProps> = ({ classOverride, className, size = 'md', ...props }) => {
+export const Loader: React.FC<LoaderProps> = ({ classOverride, className, size = 'md' }) => {
   const classNames = classOverride ?? classnames('adiago-loader', sizeClassnames[size], className);
 
   return (

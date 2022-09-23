@@ -13,6 +13,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent
 } from './dropdown';
+import { DropdownComposed } from './dropdown-composed';
 
 const Dropdown = {
   Root: DropdownMenuRoot,
@@ -27,7 +28,9 @@ const Dropdown = {
   Separator: DropdownMenuSeparator,
   Sub: DropdownMenuSub,
   SubTrigger: DropdownMenuSubTrigger,
-  SubContent: DropdownMenuSubContent
+  SubContent: DropdownMenuSubContent,
+
+  Composed: DropdownComposed
 };
 
 export default Dropdown;
