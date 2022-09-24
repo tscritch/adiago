@@ -15,7 +15,10 @@ export const SidebarListGroup: React.FC<SidebarListGroupProps> = ({
   active,
   actions,
   actionIcon,
-  disabled
+  disabled,
+  draggable,
+  onClick,
+  onSort
 }) => {
   const [open, setOpen] = React.useState(false);
   const iconClassnames = classnames('h-3 w-3 mr-2 transition-all duration-75', { 'rotate-90': open });
@@ -23,8 +26,16 @@ export const SidebarListGroup: React.FC<SidebarListGroupProps> = ({
   return (
     <RadixCollapsible.Root open={open} onOpenChange={setOpen}>
       <RadixCollapsible.Trigger className="w-full group" disabled={disabled}>
-        <SidebarListItem {...{ active, actions, actionIcon, disabled }}>
-          <ChevronRightIcon className={iconClassnames} />
+        <SidebarListItem {...{ active, actions, actionIcon, disabled, draggable, onClick, onSort }}>
+          <ChevronRightIcon
+            className={iconClassnames}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+
+              setOpen((prevOpen) => !prevOpen);
+            }}
+          />
           {label}
           <div className="flex-1" />
         </SidebarListItem>

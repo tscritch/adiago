@@ -62,7 +62,7 @@ module.exports = {
         }
       },
       animation: {
-        hide: 'hide 0.2s ease-in-out',
+        hide: 'hide 0.2s ease-in-out forwards',
         'slide-in': 'slide-in 0.1s ease-out',
         'swipe-out': 'swipe-out 0.1s ease-out',
         'rx-collapsible-height-open': 'rx-collapsible-height-open 0.1s ease-out',
