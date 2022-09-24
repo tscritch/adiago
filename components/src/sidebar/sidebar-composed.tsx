@@ -51,6 +51,7 @@ const renderItems = ({ items, activeItemId, sortable, onItemClick, onSort }: Sid
         <SidebarListGroup
           key={item.id}
           active={activeItemId === item.id}
+          hasActiveChild={item.childItems.some((childItem) => childItem.id === activeItemId)}
           label={item.label}
           disabled={item.disabled}
           onClick={() => {

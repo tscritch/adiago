@@ -22,6 +22,7 @@ export type TSidebarListItemOnSortFn = (context: TSidebarListItemOnSortContext) 
 
 export interface SidebarListItemProps {
   children?: React.ReactNode;
+  className?: string;
   active?: boolean;
   actions?: DropdownItem[];
   actionIcon?: React.ReactNode;
@@ -39,6 +40,7 @@ const draggingClasses = 'animate-hide bg-white';
 
 export const SidebarListItem: React.FC<SidebarListItemProps> = ({
   children,
+  className,
   active,
   actions,
   actionIcon,
@@ -56,11 +58,15 @@ export const SidebarListItem: React.FC<SidebarListItemProps> = ({
     })
   }));
 
-  const classNames = classnames(baseClasses, {
-    [activeClasses]: active,
-    [disabledClasses]: disabled,
-    [draggingClasses]: collected.isDragging
-  });
+  const classNames = classnames(
+    baseClasses,
+    {
+      [activeClasses]: active,
+      [disabledClasses]: disabled,
+      [draggingClasses]: collected.isDragging
+    },
+    className
+  );
 
   if (collected.isDragging) {
     return (

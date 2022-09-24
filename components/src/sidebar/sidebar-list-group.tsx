@@ -7,12 +7,14 @@ import { SidebarListItem, SidebarListItemProps } from './sidebar-list-item';
 export interface SidebarListGroupProps extends SidebarListItemProps {
   children?: React.ReactNode;
   label?: React.ReactNode;
+  hasActiveChild?: boolean;
 }
 
 export const SidebarListGroup: React.FC<SidebarListGroupProps> = ({
   children,
   label,
   active,
+  hasActiveChild,
   actions,
   actionIcon,
   disabled,
@@ -22,11 +24,14 @@ export const SidebarListGroup: React.FC<SidebarListGroupProps> = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const iconClassnames = classnames('h-3 w-3 mr-2 transition-all duration-75', { 'rotate-90': open });
+  const activeChildClassnames = classnames({ 'bg-djent-100': !open && hasActiveChild });
 
   return (
     <RadixCollapsible.Root open={open} onOpenChange={setOpen}>
       <RadixCollapsible.Trigger className="w-full group" disabled={disabled}>
-        <SidebarListItem {...{ active, actions, actionIcon, disabled, draggable, onClick, onSort }}>
+        <SidebarListItem
+          {...{ active, actions, actionIcon, disabled, draggable, onClick, onSort }}
+          className={activeChildClassnames}>
           <ChevronRightIcon
             className={iconClassnames}
             onClick={(e) => {
