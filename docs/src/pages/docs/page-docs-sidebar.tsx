@@ -8,6 +8,7 @@ export const PageDocsSidebar = () => {
           <Sidebar.Content>
             <Sidebar.ListItem
               active
+              draggable={true}
               actions={[
                 {
                   type: 'basic',

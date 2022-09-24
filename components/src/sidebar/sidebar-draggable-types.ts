@@ -1,0 +1,3 @@
+export const SIDEBAR_DRAGGABLE_TYPES = {
+  LIST_ITEM: 'LIST_ITEM'
+};

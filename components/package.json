@@ -67,6 +67,8 @@
     "@radix-ui/react-switch": "^1.0.0",
     "@radix-ui/react-toast": "^1.0.0",
     "@radix-ui/react-toggle-group": "^1.0.0",
-    "@radix-ui/react-tooltip": "^1.0.0"
+    "@radix-ui/react-tooltip": "^1.0.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1"
   }
 }

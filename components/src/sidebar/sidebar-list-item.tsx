@@ -1,8 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/solid';
+import { useDrag } from 'react-dnd';
+
+import { SIDEBAR_DRAGGABLE_TYPES } from './sidebar-draggable-types';
+
 import Dropdown from '../dropdown';
-import { DropdownItem } from 'src/dropdown/dropdown-composed';
+import { DropdownItem } from '../dropdown/dropdown-composed';
 
 export interface SidebarListItemAction {
   label: string;
@@ -16,6 +20,7 @@ export interface SidebarListItemProps {
   actions?: DropdownItem[];
   actionIcon?: React.ReactNode;
   disabled?: boolean;
+  draggable?: boolean;
 }
 
 const baseClasses =
@@ -28,12 +33,18 @@ export const SidebarListItem: React.FC<SidebarListItemProps> = ({
   active,
   actions,
   actionIcon,
-  disabled
+  disabled,
+  draggable
 }) => {
+  const [, drag] = useDrag(() => ({
+    type: SIDEBAR_DRAGGABLE_TYPES.LIST_ITEM,
+    canDrag: () => !!(draggable && !disabled)
+  }));
+
   const classNames = classnames(baseClasses, { [activeClasses]: active, [disabledClasses]: disabled });
 
   return (
-    <div className={classNames}>
+    <div className={classNames} ref={drag}>
       {children}
 
       {!disabled && actions ? (
