@@ -50,6 +50,7 @@ See [Adiago Development](/components/development.md)
 - [x] Card
 - [x] Checkbox
 - [x] Dropdown
+  - [x] Composed Dropdown (default config)
   - [ ] Dropdown item color options
 - [x] Input
 - [x] Label
@@ -61,6 +62,7 @@ See [Adiago Development](/components/development.md)
   - [x] List items
   - [x] List Item Action Menu
   - [x] Collapsible items
+  - [x] Composed Sidebar (default config)
   - [ ] Re-arrangeable items
 - [x] Switch
 - [x] Toast
