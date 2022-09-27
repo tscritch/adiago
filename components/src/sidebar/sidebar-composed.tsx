@@ -5,7 +5,7 @@ import { SidebarListItem, TSidebarListItemOnSortFn } from './sidebar-list-item';
 import { SidebarListGroup } from './sidebar-list-group';
 import { DropdownItem } from '../dropdown/dropdown-composed';
 
-interface TSidebarListItem {
+export interface TSidebarListItem {
   id: string;
   label: string;
   disabled?: boolean;
@@ -38,14 +38,28 @@ export const SidebarComposed: React.FC<SidebarComposedProps> = ({
   );
 };
 
-const renderItems = ({ items, activeItemId, sortable, onItemClick, onSort }: SidebarComposedProps) => {
+interface RenderItemsProps extends SidebarComposedProps {
+  parentId?: string;
+  parentIndex?: number;
+}
+
+const renderItems = ({
+  items,
+  activeItemId,
+  sortable,
+  onItemClick,
+  onSort,
+  parentId,
+  parentIndex = 0
+}: RenderItemsProps) => {
   const onClick = (itemId: string) => {
     if (onItemClick) {
       onItemClick(itemId);
     }
   };
 
-  return items.map((item) => {
+  return items.map((item, index) => {
+    const itemIndex = parentIndex + index;
     if (item.childItems) {
       return (
         <SidebarListGroup
@@ -59,8 +73,16 @@ const renderItems = ({ items, activeItemId, sortable, onItemClick, onSort }: Sid
             onClick(item.id);
           }}
           actions={item.actions}
-          draggable={sortable}>
-          {renderItems({ items: item.childItems, activeItemId, sortable, onItemClick, onSort })}
+          draggableProps={sortable ? { id: item.id, parentId, index: itemIndex, onSort } : undefined}>
+          {renderItems({
+            items: item.childItems,
+            activeItemId,
+            sortable,
+            onItemClick,
+            onSort,
+            parentId: item.id,
+            parentIndex: itemIndex + 1
+          })}
         </SidebarListGroup>
       );
     }
@@ -74,7 +96,7 @@ const renderItems = ({ items, activeItemId, sortable, onItemClick, onSort }: Sid
           onClick(item.id);
         }}
         actions={item.actions}
-        draggable={sortable}>
+        draggableProps={sortable ? { id: item.id, parentId, index: itemIndex, onSort } : undefined}>
         {item.label}
       </SidebarListItem>
     );
