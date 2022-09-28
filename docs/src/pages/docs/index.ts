@@ -1,3 +1,4 @@
+export { PageDocsAudioRecorder } from './page-docs-audio-recorder';
 export { PageDocsAlertDialog } from './page-docs-alert-dialog';
 export { PageDocsButton } from './page-docs-button';
 export { PageDocsCard } from './page-docs-card';

@@ -3,6 +3,7 @@ import './_utils/styles.css';
 
 export { AdiagoRoot } from './_utils/root/root';
 export { default as AlertDialog } from './alert-dialog';
+export { default as Audio } from './audio';
 export { Button } from './button';
 export { default as Card } from './card';
 export { Checkbox } from './checkbox';
