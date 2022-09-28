@@ -37,7 +37,16 @@ export const AudioRecorder = () => {
 
   return (
     <div className={classNames}>
-      <Button variant="standard" color="error" shape="circle" size="md" icon={<StopIcon />} />
+      {/* if not recording */}
+      <Button
+        variant="standard"
+        color="error"
+        shape="circle"
+        size="sm"
+        icon={<div className="w-4 h-4 rounded-full bg-white"></div>}
+      />
+      {/* if recording */}
+      <Button variant="standard" color="error" shape="circle" size="sm" icon={<StopIcon />} />
       <p>Duration: {'0:00'}</p>
     </div>
   );
