@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { Button } from '../button';
 import { useTimer } from '../_hooks/useTimer';
 import { formatTime } from '../_utils/functions';
+import { AudioVisualizer } from './audio-visualizer';
 
 export interface AudioRecorderProps {
   className?: string;
@@ -28,9 +29,11 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
   const data = React.useRef<Blob[]>();
   const [isRecording, setIsRecording] = React.useState(false);
   const [_recording, setRecording] = React.useState<string>();
+  const [visualBlob, setVisualBlob] = React.useState<Blob>(new Blob());
   const { time, startTimer, stopTimer, resetTimer } = useTimer({ format: formatTime });
 
-  const onRecord = async () => {
+  const onRecord = React.useCallback(async () => {
+    data.current = [];
     resetTimer();
     setIsRecording(true);
     stream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -40,8 +43,9 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
       onRecordStart?.();
     };
     recorder.current.ondataavailable = function (e) {
-      data.current = [];
-      data.current.push(e.data);
+      data.current!.push(e.data);
+      // add the first blob to the visualizer to ensure the audio can be decoded
+      setVisualBlob(new Blob([data.current![0], e.data], { type: blobEncoding }));
     };
     recorder.current.onstop = function (e) {
       stopTimer();
@@ -51,8 +55,8 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
       setRecording(url);
       onRecordEnd?.({ blob, url });
     };
-    recorder.current.start();
-  };
+    recorder.current.start(1000);
+  }, [blobEncoding, onRecordEnd, onRecordStart, resetTimer, startTimer, stopTimer]);
 
   const onStop = async () => {
     if (recorder.current) {
@@ -87,6 +91,7 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
         onClick={isRecording ? onStop : onRecord}
       />
       <p>Duration: {time}</p>
+      <AudioVisualizer rawData={visualBlob} />
     </div>
   );
 };
