@@ -20,3 +20,6 @@ export { ThemeToggleButton } from './theme-control/theme-toggle-button';
 export { default as Toast } from './toast';
 export { default as ToggleGroup } from './toggle-group';
 export { default as Tooltip } from './tooltip';
+
+export * from './_hooks';
+export * from './_utils/functions';

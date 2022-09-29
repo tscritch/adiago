@@ -1,53 +1,92 @@
+// Reference
+// https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+// https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API
+
 import React from 'react';
 import classnames from 'classnames';
-import { StopIcon } from '@heroicons/react/24/solid';
 import { Button } from '../button';
+import { useTimer } from '../_hooks/useTimer';
+import { formatTime } from '../_utils/functions';
 
-export const AudioRecorder = () => {
-  // const stream = React.useRef<MediaStream>();
-  // const recorder = React.useRef<MediaRecorder>();
-  // const data = React.useRef<Blob[]>();
-  // const [isRecording, setIsRecording] = React.useState(false);
-  // const [recording, setRecording] = React.useState<string>();
+export interface AudioRecorderProps {
+  className?: string;
+  classOverride?: string;
+  blobEncoding?: string;
+  onRecordStart?: () => void;
+  onRecordEnd?: ({ blob, url }: { blob: Blob; url: string }) => void;
+}
 
-  // const onRecord = async () => {
-  //   setIsRecording(true);
-  //   stream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
-  //   recorder.current = new MediaRecorder(stream.current);
-  //   recorder.current.ondataavailable = function (e) {
-  //     data.current = [];
-  //     data.current.push(e.data);
-  //   };
-  //   recorder.current.onstop = function (e) {
-  //     const blob = new Blob(data.current, { type: 'audio/ogg; codecs=opus' });
-  //     data.current = [];
-  //     setRecording(window.URL.createObjectURL(blob));
-  //   };
-  //   recorder.current.start();
-  // };
+export const AudioRecorder: React.FC<AudioRecorderProps> = ({
+  className,
+  classOverride,
+  blobEncoding = 'audio/ogg; codecs=opus',
+  onRecordStart,
+  onRecordEnd
+}) => {
+  const stream = React.useRef<MediaStream>();
+  const recorder = React.useRef<MediaRecorder>();
+  const data = React.useRef<Blob[]>();
+  const [isRecording, setIsRecording] = React.useState(false);
+  const [_recording, setRecording] = React.useState<string>();
+  const { time, startTimer, stopTimer, resetTimer } = useTimer({ format: formatTime });
 
-  // const onStop = async () => {
-  //   recorder.current!.stop();
-  //   stream.current = undefined;
-  //   recorder.current = undefined;
-  //   setIsRecording(false);
-  // };
+  const onRecord = async () => {
+    resetTimer();
+    setIsRecording(true);
+    stream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
+    recorder.current = new MediaRecorder(stream.current);
+    recorder.current.onstart = () => {
+      startTimer();
+      onRecordStart?.();
+    };
+    recorder.current.ondataavailable = function (e) {
+      data.current = [];
+      data.current.push(e.data);
+    };
+    recorder.current.onstop = function (e) {
+      stopTimer();
+      const blob = new Blob(data.current, { type: blobEncoding });
+      data.current = [];
+      const url = URL.createObjectURL(blob);
+      setRecording(url);
+      onRecordEnd?.({ blob, url });
+    };
+    recorder.current.start();
+  };
 
-  const classNames = classnames('adiago-audio-recorder', 'flex flex-col items-center justify-center space-y-4');
+  const onStop = async () => {
+    if (recorder.current) {
+      recorder.current.stop();
+      recorder.current = undefined;
+    }
+
+    if (stream.current) {
+      stream.current.getTracks().forEach((track) => track.stop());
+      stream.current = undefined;
+    }
+    setIsRecording(false);
+  };
+
+  const classNames =
+    classOverride ??
+    classnames('adiago-audio-recorder', 'flex flex-col items-center justify-center space-y-4', className);
+  const recordingIconClassNames = classnames(
+    'adiago-audio-recorder-icon',
+    'w-3 h-3 rounded-full bg-red-500 transition-all duration-75',
+    { 'w-3 h-3 rounded-sm bg-neutral-600 dark:bg-neutral-100': isRecording }
+  );
 
   return (
     <div className={classNames}>
-      {/* if not recording */}
       <Button
-        variant="standard"
-        color="error"
+        variant="flat"
+        color={'opaque'}
         shape="circle"
         size="sm"
-        icon={<div className="w-4 h-4 rounded-full bg-white"></div>}
+        icon={<div className={recordingIconClassNames}></div>}
+        onClick={isRecording ? onStop : onRecord}
       />
-      {/* if recording */}
-      <Button variant="standard" color="error" shape="circle" size="sm" icon={<StopIcon />} />
-      <p>Duration: {'0:00'}</p>
+      <p>Duration: {time}</p>
     </div>
   );
 };
