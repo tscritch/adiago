@@ -1,6 +1,6 @@
 import { Audio } from '@adiago/components';
 
-export const PageDocsAudioRecorder = () => {
+export const PageDocsAudio_Recorder = () => {
   return (
     <div>
       <div className="p-4">

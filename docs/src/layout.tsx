@@ -28,7 +28,7 @@ export const Layout: React.FC = () => {
           <Sidebar.Content className="p-2">
             {cList.map((name) => (
               <Link key={name} to={`/docs/${name}`}>
-                <Sidebar.ListItem active={name === pageName}>{name}</Sidebar.ListItem>
+                <Sidebar.ListItem active={name === pageName}>{name.replaceAll('_', ' ')}</Sidebar.ListItem>
               </Link>
             ))}
           </Sidebar.Content>
