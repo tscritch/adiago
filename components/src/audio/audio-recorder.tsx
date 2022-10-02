@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import { Button } from '../button';
 import { useTimer } from '../_hooks/useTimer';
 import { formatTime } from '../_utils/functions';
-import { AudioVisualizer } from './audio-visualizer';
 
 export interface AudioRecorderProps {
   className?: string;
@@ -29,12 +28,12 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
   const data = React.useRef<Blob[]>();
   const [isRecording, setIsRecording] = React.useState(false);
   const [_recording, setRecording] = React.useState<string>();
-  const [visualBlob, setVisualBlob] = React.useState<Blob>(new Blob());
   const { time, startTimer, stopTimer, resetTimer } = useTimer({ format: formatTime });
 
   const onRecord = React.useCallback(async () => {
     data.current = [];
     resetTimer();
+    setRecording(undefined);
     setIsRecording(true);
     stream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
     recorder.current = new MediaRecorder(stream.current);
@@ -44,8 +43,6 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
     };
     recorder.current.ondataavailable = function (e) {
       data.current!.push(e.data);
-      // add the first blob to the visualizer to ensure the audio can be decoded
-      setVisualBlob(new Blob([data.current![0], e.data], { type: blobEncoding }));
     };
     recorder.current.onstop = function (e) {
       stopTimer();
@@ -55,7 +52,7 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
       setRecording(url);
       onRecordEnd?.({ blob, url });
     };
-    recorder.current.start(1000);
+    recorder.current.start();
   }, [blobEncoding, onRecordEnd, onRecordStart, resetTimer, startTimer, stopTimer]);
 
   const onStop = async () => {
@@ -71,18 +68,23 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
     setIsRecording(false);
   };
 
-  const classNames =
-    classOverride ??
-    classnames('adiago-audio-recorder', 'flex flex-col items-center justify-center space-y-4', className);
+  const classNames = classOverride ?? classnames('adiago-audio-recorder', 'z-0 relative', className);
   const recordingIconClassNames = classnames(
     'adiago-audio-recorder-icon',
     'w-3 h-3 rounded-full bg-red-500 transition-all duration-75',
-    { 'w-3 h-3 rounded-sm bg-neutral-600 dark:bg-neutral-100': isRecording }
+    { 'w-3 h-3 rounded-sm bg-neutral-600 dark:bg-neutral-100 animate-pulse': isRecording }
+  );
+  const recordingTimeClassNames = classnames(
+    'adiago-audio-recorder-time',
+    'absolute -z-10 rounded-full top-[2px] left-[1px] py-1 w-7 pr-0 transition-all text-end text-sm bg-red-500 text-transparent shadow-md dark:bg-red-500',
+    { 'pr-3 pl-10 min-w-[90px] text-neutral-50 dark:text-neutral-50': isRecording }
   );
 
   return (
     <div className={classNames}>
+      <div className={recordingTimeClassNames}>{time}</div>
       <Button
+        className="z-10"
         variant="flat"
         color={'opaque'}
         shape="circle"
@@ -90,8 +92,6 @@ export const AudioRecorder: React.FC<AudioRecorderProps> = ({
         icon={<div className={recordingIconClassNames}></div>}
         onClick={isRecording ? onStop : onRecord}
       />
-      <p>Duration: {time}</p>
-      <AudioVisualizer rawData={visualBlob} />
     </div>
   );
 };
