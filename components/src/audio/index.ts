@@ -1,8 +1,9 @@
-import { AudioPlayer } from './audio-player';
+import { AudioPlayerSimple } from './audio-player';
 import { AudioRecorder } from './audio-recorder';
 
 const Audio = {
-  Player: AudioPlayer,
+  SimplePlayer: AudioPlayerSimple,
+  // Player: AudioPlayer,
   Recorder: AudioRecorder
 };
 
