@@ -2,7 +2,7 @@
 // https://css-tricks.com/making-an-audio-waveform-visualizer-with-vanilla-javascript/
 
 import React from 'react';
-import { useAudioContext } from '../_utils/root/audio-context';
+import { useNativeAudioContext } from '../_utils/root/native-audio-context';
 
 export interface AudioVisualizerProps {
   rawData: Blob;
@@ -20,7 +20,7 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ rawData }) => 
 };
 
 const useAudioData = (rawData: Blob) => {
-  const audioContext = useAudioContext();
+  const audioContext = useNativeAudioContext();
   const [audioData, setAudioData] = React.useState<number[]>([]);
   React.useEffect(() => {
     (async () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { AdiagoAudioContext } from './audio-context';
+import { AdiagoNativeAudioContext } from './native-audio-context';
 import { AdiagoTheme } from './theme';
 import Tooltip from '../../tooltip';
 
@@ -14,13 +14,13 @@ export interface AdiagoRootProps {
 
 export const AdiagoRoot: React.FC<AdiagoRootProps> = ({ children }) => {
   return (
-    <AdiagoAudioContext.Provider value={new AudioContext()}>
+    <AdiagoNativeAudioContext.Provider value={new AudioContext()}>
       <DndProvider backend={HTML5Backend}>
         <Tooltip.Provider>
           <AdiagoTheme />
           {children}
         </Tooltip.Provider>
       </DndProvider>
-    </AdiagoAudioContext.Provider>
+    </AdiagoNativeAudioContext.Provider>
   );
 };
