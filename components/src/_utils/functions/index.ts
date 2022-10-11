@@ -8,3 +8,7 @@ export const formatTime = (time: number): string => {
     seconds < 10 ? '0' + seconds : seconds
   }`;
 };
+
+export const clamp = (value: number, min: number, max: number): number => {
+  return Math.min(Math.max(value, min), max);
+};
