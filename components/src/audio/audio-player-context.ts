@@ -16,7 +16,9 @@ export interface IAudioPlayerState {
   /**
    * The id of the current track
    */
-  currentTrack?: string;
+  currentTrackId?: string;
+  currentTrack?: IAudioPlayerTrack;
+  currentTrackDuration?: number;
   volume: number;
   muted: boolean;
   timeProgress: number;
@@ -95,15 +97,22 @@ export const AdiagoAudioPlayerContext = React.createContext<IAudioPlayerContext>
 
 export const useAudioPlayerContext = () => React.useContext(AdiagoAudioPlayerContext);
 
+const newAudio = (src?: string) => {
+  const audio = new Audio(src);
+  audio.preload = 'metadata';
+  return audio;
+};
+
 export const useAudioPlayerContextState = (): IAudioPlayerContext => {
-  const audioRef = React.useRef(new Audio());
+  const audioRef = React.useRef(newAudio());
   const intervalRef = React.useRef<number>();
 
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [queue, setQueue] = React.useState<IAudioPlayerTrack[]>([]);
   const [repeatState, setRepeatState] = React.useState<'none' | 'current' | 'all'>('none');
   const [shuffleState, setShuffleState] = React.useState(false);
-  const [currentTrack, setCurrentTrack] = React.useState<string>();
+  const [currentTrackId, setCurrentTrackId] = React.useState<string>();
+  const [currentTrackDuration, setCurrentTrackDuration] = React.useState<number>();
   const [muted, setMuted] = React.useState(false);
   const [volumeState, setVolumeState] = React.useState(75);
   const [timeProgress, setTimeProgress] = React.useState(0);
@@ -118,7 +127,7 @@ export const useAudioPlayerContextState = (): IAudioPlayerContext => {
             stop();
             break;
           case 'current':
-            play(currentTrack);
+            play(currentTrackId);
             break;
           case 'all':
             next();
@@ -130,34 +139,51 @@ export const useAudioPlayerContextState = (): IAudioPlayerContext => {
     }, 100);
   };
 
-  const playTrack = React.useCallback((trackId: string) => {
-    const track = queue.find((track) => track.id === trackId);
+  const playTrack = React.useCallback(
+    (trackId: string) => {
+      const track = queue.find((track) => track.id === trackId);
 
-    if (track) {
-      audioRef.current.src = track.src;
-      audioRef.current.play();
-      setCurrentTrack(track.id);
-      setIsPlaying(true);
-      startTimer();
-    }
-  }, []);
-
-  const play = React.useCallback((track?: IAudioPlayerTrack | string) => {
-    if (typeof track === 'string') {
-      const trackInQueue = queue.find((t) => t.id === track);
-      if (trackInQueue) {
-        playTrack(trackInQueue.id);
-      } else {
-        console.warn('AdiagoAudioPlayer: Track not found in queue');
+      if (track) {
+        if (audioRef.current.src === track.src) {
+          audioRef.current.play();
+          setIsPlaying(true);
+          startTimer();
+        } else {
+          audioRef.current.src = track.src;
+          audioRef.current.play();
+          audioRef.current.onloadedmetadata = () => {
+            setCurrentTrackDuration(audioRef.current.duration);
+          };
+          setCurrentTrackId(track.id);
+          setIsPlaying(true);
+          startTimer();
+        }
       }
-    } else if (track) {
-      playTrack(track.id);
-    } else if (currentTrack) {
-      playTrack(currentTrack);
-    } else if (queue.length > 0) {
-      playTrack(queue[0].id);
-    }
-  }, []);
+    },
+    [queue]
+  );
+
+  const play = React.useCallback(
+    (track?: IAudioPlayerTrack | string) => {
+      if (typeof track === 'string') {
+        const trackInQueue = queue.find((t) => t.id === track);
+        if (trackInQueue) {
+          playTrack(trackInQueue.id);
+        } else {
+          console.warn('AdiagoAudioPlayer: Track not found in queue');
+        }
+      } else if (track) {
+        playTrack(track.id);
+      } else if (currentTrackId) {
+        playTrack(currentTrackId);
+      } else if (queue.length > 0) {
+        console.log('play first track in queue');
+
+        playTrack(queue[0].id);
+      }
+    },
+    [queue]
+  );
 
   const pause = React.useCallback(() => {
     setIsPlaying(false);
@@ -166,13 +192,13 @@ export const useAudioPlayerContextState = (): IAudioPlayerContext => {
   }, []);
 
   const next = React.useCallback(() => {
-    const currentIndex = queue.findIndex((t) => t.id === currentTrack);
+    const currentIndex = queue.findIndex((t) => t.id === currentTrackId);
     if (currentIndex < queue.length - 1) {
       playTrack(queue[currentIndex + 1].id);
     } else {
       playTrack(queue[0].id);
     }
-  }, [currentTrack, queue]);
+  }, [currentTrackId, queue]);
 
   const previous = React.useCallback(() => {
     if (timeProgress > 3) {
@@ -180,13 +206,13 @@ export const useAudioPlayerContextState = (): IAudioPlayerContext => {
       return;
     }
 
-    const currentIndex = queue.findIndex((t) => t.id === currentTrack);
+    const currentIndex = queue.findIndex((t) => t.id === currentTrackId);
     if (currentIndex > 0) {
       playTrack(queue[currentIndex - 1].id);
     } else {
       playTrack(queue[queue.length - 1].id);
     }
-  }, []);
+  }, [timeProgress, queue]);
 
   const seek = React.useCallback((time: number) => {
     clearInterval(intervalRef.current);
@@ -204,7 +230,8 @@ export const useAudioPlayerContextState = (): IAudioPlayerContext => {
 
   const stop = React.useCallback(() => {
     setIsPlaying(false);
-    setCurrentTrack(undefined);
+    setCurrentTrackId(undefined);
+    setCurrentTrackDuration(undefined);
     audioRef.current.pause();
     audioRef.current.currentTime = 0;
   }, []);
@@ -256,14 +283,18 @@ export const useAudioPlayerContextState = (): IAudioPlayerContext => {
     setMuted(false);
   }, []);
 
+  const currentTrack = React.useMemo(() => queue.find((track) => track.id === currentTrackId), [queue, currentTrackId]);
+
   return {
     isPlaying,
     queue,
+    currentTrackId,
     currentTrack,
     volume: volumeState,
     muted,
     timeProgress,
     percentageProgress: timeProgress / audioRef.current.duration,
+    currentTrackDuration,
     repeat: repeatState,
     shuffle: shuffleState,
     play,

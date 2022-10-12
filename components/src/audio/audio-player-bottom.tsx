@@ -43,31 +43,3 @@ export const AudioPlayerSimple: React.FC<AudioPlayerSimpleProps> = ({ className,
     </div>
   );
 };
-
-// export interface AudioPlayerProps {
-//   className?: string;
-//   classOverride?: string;
-// }
-
-// export const AudioPlayerComplete: React.FC<AudioPlayerProps> = ({
-//   className,
-//   classOverride,
-// }) => {
-//   const [isPlaying, setIsPlaying] = React.useState(false);
-
-//   const classNames = classOverride ?? classnames('adiago-audio-recorder', 'z-0 relative', className);
-
-//   return (
-//     <div className={classNames}>
-//       <Button
-//         className="z-10"
-//         variant="flat"
-//         color={'opaque'}
-//         shape="circle"
-//         size="sm"
-//         icon={<div className={recordingIconClassNames}></div>}
-//         onClick={isRecording ? onStop : onRecord}
-//       />
-//     </div>
-//   );
-// };

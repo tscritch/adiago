@@ -1,10 +1,14 @@
-import { AudioPlayerSimple } from './audio-player';
+import { AudioPlayerComposed } from './audio-player-composed';
+import { useAudioPlayerContext } from './audio-player-context';
+import { AudioPlayerSimple } from './audio-player-simple';
 import { AudioRecorder } from './audio-recorder';
 
 const Audio = {
   SimplePlayer: AudioPlayerSimple,
-  // Player: AudioPlayer,
-  Recorder: AudioRecorder
+  ComposedPlayer: AudioPlayerComposed,
+  Recorder: AudioRecorder,
+
+  useContext: useAudioPlayerContext
 };
 
 export default Audio;
