@@ -1,6 +1,6 @@
 import { AlertDialog, Button } from '@adiago/components';
 
-export const PageDocsAlertDialog = () => {
+export const PageDocsAlert_Dialog = () => {
   return (
     <div>
       <div className="p-4">

@@ -1,6 +1,6 @@
 import { ToggleGroup } from '@adiago/components';
 
-export const PageDocsToggleGroup = () => {
+export const PageDocsToggle_Group = () => {
   return (
     <div>
       <div className="p-4">

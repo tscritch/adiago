@@ -45,7 +45,18 @@ See [Adiago Development](/components/development.md)
 
 - [x] Alert Dialog
 - [ ] Audio Player
-- [ ] Audio Recorder
+  > Basics are done but needs more time and thought for fully rounded solution
+  - [x] Composed Simple Player
+  - [ ] Composed Complex Player (all player controls, queue, volume)
+  - [x] Player Provider
+  - [ ] Play Button
+  - [ ] Player state hook (isPlaying, currentAudio, playQueue, fns)
+  - [ ] Player current audio hook
+  - [ ] Player time progress hook
+  - [ ] Player time progress text (option for total time)
+  - [ ] Player Progress/Scrubber (option for scrub control - needs slider)
+  - [ ] Player Volume Control (needs slider)
+- [x] Audio Recorder
 - [x] Button
 - [x] Card
 - [x] Checkbox
@@ -64,6 +75,7 @@ See [Adiago Development](/components/development.md)
   - [x] Collapsible items
   - [x] Composed Sidebar (default config)
   - [ ] Re-arrangeable items
+- [ ] Slider
 - [x] Switch
 - [x] Toast
 - [x] Toggle Group

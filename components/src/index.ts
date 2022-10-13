@@ -3,6 +3,7 @@ import './_utils/styles.css';
 
 export { AdiagoRoot } from './_utils/root/root';
 export { default as AlertDialog } from './alert-dialog';
+export { default as Audio } from './audio';
 export { Button } from './button';
 export { default as Card } from './card';
 export { Checkbox } from './checkbox';
@@ -19,3 +20,6 @@ export { ThemeToggleButton } from './theme-control/theme-toggle-button';
 export { default as Toast } from './toast';
 export { default as ToggleGroup } from './toggle-group';
 export { default as Tooltip } from './tooltip';
+
+export * from './_hooks';
+export * from './_utils/functions';
