@@ -11,3 +11,11 @@ To use while developing components follow these steps:
 3. Now, run `yarn dev` to start the dev server.
 
 ### Deployment
+
+#### Vercel
+
+1. Add the contents of .npmrc file to the env var `NPM_RC`.
+
+#### Resources
+
+https://vercel.com/guides/using-private-dependencies-with-vercel
