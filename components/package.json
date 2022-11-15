@@ -1,6 +1,6 @@
 {
   "name": "@adiago/components",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Styled React Component Library based on Radix and Tailwind",
   "homepage": "https://adiago.dev",
   "repository": {
